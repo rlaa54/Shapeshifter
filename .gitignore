@@ -1,6 +1,5 @@
 # Godot 4+ specific ignores
 .godot/
 
-# ignore all art and sound folder
-Art/
-Sound/
+# ignore all asset
+Asset/
