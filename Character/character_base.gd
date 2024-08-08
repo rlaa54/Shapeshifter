@@ -7,13 +7,13 @@ func _physics_process(delta):
 	# 입력 처리
 	velocity = Vector2.ZERO
 	
-	if Input.is_action_pressed("ui_right"):
+	if Input.is_action_pressed("Right"):
 		velocity.x += 1
-	if Input.is_action_pressed("ui_left"):
+	if Input.is_action_pressed("Left"):
 		velocity.x -= 1
-	if Input.is_action_pressed("ui_down"):
+	if Input.is_action_pressed("Down"):
 		velocity.y += 1
-	if Input.is_action_pressed("ui_up"):
+	if Input.is_action_pressed("Up"):
 		velocity.y -= 1
 		
 	# 벨로시티 정규화 및 속도 적용

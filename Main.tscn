@@ -1,5 +1,9 @@
-[gd_scene format=3 uid="uid://d0vh18kendgfj"]
+[gd_scene load_steps=2 format=3 uid="uid://d0vh18kendgfj"]
+
+[ext_resource type="PackedScene" uid="uid://cgl3vgm2nvo5t" path="res://Character/character_base.tscn" id="1_ha6sc"]
 
 [node name="Main" type="Node2D"]
 
 [node name="GameManager" type="Node2D" parent="."]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_ha6sc")]
