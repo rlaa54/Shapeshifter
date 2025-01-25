@@ -1,7 +1,12 @@
 extends CharacterBody2D
 
 
-var speed = 300.0
+var direction = Vector2()
+
+const TOP = Vector2(0, -1)
+const RIGHT = Vector2(1, 0)
+const DOWN = Vector2(0, 1)
+const LEFT = Vector2(-1, 0)
 
 func _physics_process(delta):
 	# 입력 처리

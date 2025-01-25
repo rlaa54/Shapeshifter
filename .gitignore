@@ -3,3 +3,6 @@
 
 # ignore all asset
 Asset/
+
+# ignore .vscode
+.vscode/

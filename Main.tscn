@@ -1,9 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0vh18kendgfj"]
+[gd_scene load_steps=4 format=3 uid="uid://d0vh18kendgfj"]
 
 [ext_resource type="PackedScene" uid="uid://cgl3vgm2nvo5t" path="res://Character/character_base.tscn" id="1_ha6sc"]
+[ext_resource type="Script" path="res://grid.gd" id="2_7jxir"]
+
+[sub_resource type="TileSet" id="TileSet_7q1wy"]
 
 [node name="Main" type="Node2D"]
+position = Vector2(114, 68)
 
 [node name="GameManager" type="Node2D" parent="."]
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_ha6sc")]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_7q1wy")
+script = ExtResource("2_7jxir")
