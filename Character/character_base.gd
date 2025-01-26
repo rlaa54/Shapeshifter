@@ -1,29 +1,19 @@
 extends CharacterBody2D
 
+var tile_size = 64
+var inputs={"Right": Vector2.RIGHT, 
+			"Left": Vector2.LEFT, 
+			"Down": Vector2.DOWN, 
+			"Up": Vector2.UP}
 
-var direction = Vector2()
+func _ready():
+	position = position.snapped(Vector2.ONE * tile_size)
+	position += Vector2.ONE * tile_size / 2
 
-const TOP = Vector2(0, -1)
-const RIGHT = Vector2(1, 0)
-const DOWN = Vector2(0, 1)
-const LEFT = Vector2(-1, 0)
+func _unhandled_input(event: InputEvent) -> void:
+	for dir in inputs.keys():
+		if event.is_action_pressed(dir):
+			move(dir)
 
-func _physics_process(delta):
-	# 입력 처리
-	velocity = Vector2.ZERO
-	
-	if Input.is_action_pressed("Right"):
-		velocity.x += 1
-	if Input.is_action_pressed("Left"):
-		velocity.x -= 1
-	if Input.is_action_pressed("Down"):
-		velocity.y += 1
-	if Input.is_action_pressed("Up"):
-		velocity.y -= 1
-		
-	# 벨로시티 정규화 및 속도 적용
-	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed
-	
-	# 움직임 적용
-	move_and_slide()
+func move(dir):
+	position += inputs[dir] * tile_size

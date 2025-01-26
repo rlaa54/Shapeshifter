@@ -1,11 +1,14 @@
 extends TileMapLayer
 
+var tile_size = 64
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+# Draw the grid
+func _draw() -> void:
+	var width = get_viewport_rect().size.x
+	var height = get_viewport_rect().size.y
+	
+	for x in range(0, width, tile_size):
+		draw_line(Vector2(x, 0), Vector2(x, height), Color(0, 0, 0))
+	
+	for y in range(0, height, tile_size):
+		draw_line(Vector2(0, y), Vector2(width, y), Color(0, 0, 0))
