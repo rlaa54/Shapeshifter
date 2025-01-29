@@ -8,7 +8,7 @@ const ARRIVE_DISTANCE = 10.0
 @export var speed: float = 200.0
 
 var _state = State.IDLE
-var _velocity = Vector2()
+# var _velocity = Vector2()
 
 @onready var _tile_map_layer = $"../TileMapLayer"
 
@@ -37,11 +37,12 @@ func _unhandled_input(event):
 			_change_state(State.FOLLOW)
 
 func _move_to(local_position):
-	var desired_velocity = (local_position - position).normalized() * speed
-	var steering = desired_velocity - _velocity
-	_velocity += steering / MASS
-	position += _velocity * get_process_delta_time()
-	rotation = _velocity.angle()
+	# var desired_velocity = (local_position - position).normalized() * speed
+	# var steering = desired_velocity - _velocity
+	# _velocity += steering / MASS
+	# # rotation = _velocity.angle()
+	# position += _velocity * get_process_delta_time()
+	position = local_position
 	return position.distance_to(local_position) < ARRIVE_DISTANCE
 
 func _change_state(new_state):
