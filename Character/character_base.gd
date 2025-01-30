@@ -5,12 +5,14 @@ enum State { IDLE, FOLLOW }
 const MASS = 10.0
 const ARRIVE_DISTANCE = 10.0
 
-@export var speed: float = 200.0
+# @export var speed: float = 200.0
+@export var maxTimeUnit: int = 100
+@export var curTimeUnit: int = 0
 
 var _state = State.IDLE
 # var _velocity = Vector2()
 
-@onready var _tile_map_layer = $"../TileMapLayer"
+@onready var tile_map_layer = $"../TileMapLayer"
 
 var _click_position = Vector2()
 var _path = PackedVector2Array()
@@ -18,6 +20,7 @@ var _next_point = Vector2()
 
 func _ready():
 	_change_state(State.IDLE)
+	curTimeUnit = maxTimeUnit
 
 func _process(_delta):
 	if _state != State.FOLLOW:
@@ -32,24 +35,25 @@ func _process(_delta):
 
 func _unhandled_input(event):
 	_click_position = get_global_mouse_position()
-	if _tile_map_layer.is_point_walkable(_click_position):
+	if tile_map_layer.is_point_walkable(_click_position):
 		if event.is_action_pressed(&"move_to"):
 			_change_state(State.FOLLOW)
 
 func _move_to(local_position):
-	# var desired_velocity = (local_position - position).normalized() * speed
-	# var steering = desired_velocity - _velocity
-	# _velocity += steering / MASS
-	# # rotation = _velocity.angle()
-	# position += _velocity * get_process_delta_time()
+	print("이동전타임유닛:",curTimeUnit)
+	if position.distance_to(local_position) == 128:
+		curTimeUnit -= 4
+	else :
+		curTimeUnit -= 6
+	print("이동후타임유닛:",curTimeUnit, "\n")
 	position = local_position
 	return position.distance_to(local_position) < ARRIVE_DISTANCE
 
 func _change_state(new_state):
 	if new_state == State.IDLE:
-		_tile_map_layer.clear_path()
+		tile_map_layer.clear_path()
 	elif new_state == State.FOLLOW:
-		_path = _tile_map_layer.find_path(position, _click_position)
+		_path = tile_map_layer.find_path(position, _click_position)
 		if _path.size() < 2:
 			_change_state(State.IDLE)
 			return
