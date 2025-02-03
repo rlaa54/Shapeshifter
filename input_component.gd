@@ -5,9 +5,9 @@ class_name Input_component
 @export var character : Character_base
 @export var move_component : Move_component
 
-var click_position = Vector2()
+@onready var tile_map_layer = $"/root/Main/TileMapLayer"
 
-@onready var tile_map_layer = $"../TileMapLayer"
+var click_position = Vector2()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

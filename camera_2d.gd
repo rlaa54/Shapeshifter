@@ -16,6 +16,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("zoom_in"):
 		zoom += Vector2(zoom_distance, zoom_distance)
 	if event.is_action_pressed("zoom_out"):
+		# 줌이 1보다 작아지지 않도록 한다. 
+		# 줌이 1보다 작아지면 화면이 반대로 뒤집히는 현상이 발생한다.
 		if zoom.x >= zoom_distance and zoom.y >= zoom_distance:
 			zoom -= Vector2(zoom_distance, zoom_distance)
 	
