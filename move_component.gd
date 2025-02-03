@@ -3,7 +3,6 @@ extends Node2D
 class_name Move_component
 
 @export var character : Character_base
-@export var input_component : Input_component
 
 @onready var tile_map_layer = $"/root/Main/TileMapLayer"
 
