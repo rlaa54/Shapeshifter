@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://d0vh18kendgfj"]
+[gd_scene load_steps=10 format=3 uid="uid://d0vh18kendgfj"]
 
 [ext_resource type="PackedScene" uid="uid://cgl3vgm2nvo5t" path="res://Character/character_base.tscn" id="1_ha6sc"]
+[ext_resource type="Script" path="res://World.gd" id="1_s4xff"]
 [ext_resource type="Script" path="res://tilemaplayer.gd" id="2_7jxir"]
 [ext_resource type="PackedScene" uid="uid://wy3uq2nd43tu" path="res://move_component.tscn" id="2_lerxa"]
 [ext_resource type="Script" path="res://camera_2d.gd" id="3_j1wro"]
@@ -10,16 +11,19 @@
 [sub_resource type="TileSet" id="TileSet_7q1wy"]
 tile_size = Vector2i(128, 128)
 
-[node name="Main" type="Node2D"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gi1mf"]
+blend_mode = 3
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_s4xff")
 
 [node name="GameManager" type="Node2D" parent="."]
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_ha6sc")]
 position = Vector2(64, 64)
 
-[node name="move_component" parent="CharacterBody2D" node_paths=PackedStringArray("character", "input_component") instance=ExtResource("2_lerxa")]
+[node name="move_component" parent="CharacterBody2D" node_paths=PackedStringArray("character") instance=ExtResource("2_lerxa")]
 character = NodePath("..")
-input_component = NodePath("../input_component")
 
 [node name="input_component" parent="CharacterBody2D" node_paths=PackedStringArray("character", "move_component") instance=ExtResource("3_tpdn8")]
 character = NodePath("..")
@@ -34,3 +38,7 @@ script = ExtResource("2_7jxir")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("3_j1wro")
+
+[node name="Fog" type="Sprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_gi1mf")
+centered = false

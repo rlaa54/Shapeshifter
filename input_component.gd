@@ -5,7 +5,7 @@ class_name Input_component
 @export var character : Character_base
 @export var move_component : Move_component
 
-@onready var tile_map_layer = $"/root/Main/TileMapLayer"
+@onready var tile_map_layer = $"/root/World/TileMapLayer"
 
 var click_position = Vector2()
 

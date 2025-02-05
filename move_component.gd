@@ -4,7 +4,7 @@ class_name Move_component
 
 @export var character : Character_base
 
-@onready var tile_map_layer = $"/root/Main/TileMapLayer"
+@onready var tile_map_layer = $"/root/World/TileMapLayer"
 
 var path = PackedVector2Array()
 var next_point = Vector2()
@@ -17,7 +17,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if !(is_moving):
 		return
 	move_to(next_point)
