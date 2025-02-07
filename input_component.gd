@@ -21,4 +21,6 @@ func _unhandled_input(event):
 			# 시작 지점을 제거
 			move_component.path.remove_at(0)
 			move_component.is_moving = true
+
+			# fix me
 			move_component.next_point = move_component.path[0]

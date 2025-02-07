@@ -37,6 +37,7 @@ tile_set = SubResource("TileSet_7q1wy")
 script = ExtResource("2_7jxir")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(512, 300)
 script = ExtResource("3_j1wro")
 
 [node name="Fog" type="Sprite2D" parent="."]

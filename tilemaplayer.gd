@@ -2,10 +2,12 @@ extends TileMapLayer
 
 enum Tile { OBSTACLE, START_POINT, END_POINT}
 
-var CELL_SIZE = tile_set.tile_size
 const BASE_LINE_WIDTH = 3.0
 const DRAW_COLOR = Color.WHITE
+
+var cell_size = tile_set.tile_size
 @export var num_tiles = Vector2i(16, 16)
+
 # the object for pathfinding on 2d grids.
 var _astar = AStarGrid2D.new()
 
@@ -17,8 +19,8 @@ func _ready() -> void:
 	# Region should match the size of the playable area plus one (in tiles).
 	# In this demo, the playable area is 17×9 tiles, so the rect size is 18×10.
 	_astar.region = Rect2i(0, 0, num_tiles.x, num_tiles.y)
-	_astar.cell_size = CELL_SIZE
-	_astar.offset = CELL_SIZE * 0.5
+	_astar.cell_size = cell_size
+	_astar.offset = cell_size * 0.5
 	_astar.default_compute_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
 	_astar.default_estimate_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
 	_astar.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_ALWAYS
@@ -34,6 +36,8 @@ func _ready() -> void:
 func _draw() -> void:
 	draw_grid()
 
+	draw_rect(Rect2(Vector2.ZERO, Vector2(2048, 2048)), Color.RED, false)
+
 	if _path.is_empty():
 		return
 
@@ -46,12 +50,12 @@ func _draw() -> void:
 	
 func draw_grid():
 	for x in num_tiles.x + 1:
-		draw_line(Vector2(x * CELL_SIZE.x, 0),
-				  Vector2(x * CELL_SIZE.x, num_tiles.y * CELL_SIZE.y),
+		draw_line(Vector2(x * cell_size.x, 0),
+				  Vector2(x * cell_size.x, num_tiles.y * cell_size.y),
 				  DRAW_COLOR, 1.0)
 	for y in num_tiles.y + 1:
-		draw_line(Vector2(0, y * CELL_SIZE.y),
-				  Vector2(num_tiles.x * CELL_SIZE.x, y * CELL_SIZE.y),
+		draw_line(Vector2(0, y * cell_size.y),
+				  Vector2(num_tiles.x * cell_size.x, y * cell_size.y),
 				  DRAW_COLOR, 1.0)
 
 func round_local_position(local_position):
