@@ -14,16 +14,19 @@ tile_size = Vector2i(128, 128)
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gi1mf"]
 blend_mode = 3
 
-[node name="World" type="Node2D"]
+[node name="World" type="Node2D" node_paths=PackedStringArray("character", "tile_map_layer")]
 script = ExtResource("1_s4xff")
+character = NodePath("CharacterBody2D")
+tile_map_layer = NodePath("TileMapLayer")
 
 [node name="GameManager" type="Node2D" parent="."]
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_ha6sc")]
 position = Vector2(64, 64)
 
-[node name="move_component" parent="CharacterBody2D" node_paths=PackedStringArray("character") instance=ExtResource("2_lerxa")]
+[node name="move_component" parent="CharacterBody2D" node_paths=PackedStringArray("character", "world") instance=ExtResource("2_lerxa")]
 character = NodePath("..")
+world = NodePath("../..")
 
 [node name="input_component" parent="CharacterBody2D" node_paths=PackedStringArray("character", "move_component") instance=ExtResource("3_tpdn8")]
 character = NodePath("..")
