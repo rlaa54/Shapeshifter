@@ -2,5 +2,7 @@ extends CharacterBody2D
 
 class_name Character_base
 
+@export var stats : All_stat
+
 func _ready():
-	pass
+    stats._ready()

@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://d0vh18kendgfj"]
 
-[ext_resource type="PackedScene" uid="uid://cgl3vgm2nvo5t" path="res://Character/character_base.tscn" id="1_ha6sc"]
+[ext_resource type="PackedScene" uid="uid://cgl3vgm2nvo5t" path="res://character/character_base.tscn" id="1_ha6sc"]
 [ext_resource type="Script" path="res://World.gd" id="1_s4xff"]
 [ext_resource type="Script" path="res://tilemaplayer.gd" id="2_7jxir"]
-[ext_resource type="PackedScene" uid="uid://wy3uq2nd43tu" path="res://move_component.tscn" id="2_lerxa"]
-[ext_resource type="Script" path="res://camera_2d.gd" id="3_j1wro"]
-[ext_resource type="PackedScene" uid="uid://wf71yc5adedy" path="res://input_component.tscn" id="3_tpdn8"]
+[ext_resource type="PackedScene" uid="uid://wy3uq2nd43tu" path="res://movement/move_component.tscn" id="2_lerxa"]
+[ext_resource type="PackedScene" uid="uid://wf71yc5adedy" path="res://input/input_component.tscn" id="3_tpdn8"]
+[ext_resource type="PackedScene" uid="uid://cnnpr4k2bfs13" path="res://camera/camera_2d.tscn" id="3_wbh8r"]
 [ext_resource type="PackedScene" uid="uid://bka4wqcivwrni" path="res://timeunit_component.tscn" id="4_ri62v"]
 
 [sub_resource type="TileSet" id="TileSet_7q1wy"]
@@ -16,33 +16,31 @@ blend_mode = 3
 
 [node name="World" type="Node2D" node_paths=PackedStringArray("character", "tile_map_layer")]
 script = ExtResource("1_s4xff")
-character = NodePath("CharacterBody2D")
+character = NodePath("Character_base")
 tile_map_layer = NodePath("TileMapLayer")
 
 [node name="GameManager" type="Node2D" parent="."]
-
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_ha6sc")]
-position = Vector2(64, 64)
-
-[node name="move_component" parent="CharacterBody2D" node_paths=PackedStringArray("character", "world") instance=ExtResource("2_lerxa")]
-character = NodePath("..")
-world = NodePath("../..")
-
-[node name="input_component" parent="CharacterBody2D" node_paths=PackedStringArray("character", "move_component") instance=ExtResource("3_tpdn8")]
-character = NodePath("..")
-move_component = NodePath("../move_component")
-
-[node name="timeunit_component" parent="CharacterBody2D" node_paths=PackedStringArray("character") instance=ExtResource("4_ri62v")]
-character = NodePath("..")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_set = SubResource("TileSet_7q1wy")
 script = ExtResource("2_7jxir")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(512, 300)
-script = ExtResource("3_j1wro")
+[node name="Camera2D" parent="." instance=ExtResource("3_wbh8r")]
 
 [node name="Fog" type="Sprite2D" parent="."]
 material = SubResource("CanvasItemMaterial_gi1mf")
 centered = false
+
+[node name="Character_base" parent="." instance=ExtResource("1_ha6sc")]
+position = Vector2(64, 64)
+
+[node name="input_component" parent="Character_base" node_paths=PackedStringArray("character", "move_component") instance=ExtResource("3_tpdn8")]
+character = NodePath("..")
+move_component = NodePath("../move_component")
+
+[node name="move_component" parent="Character_base" node_paths=PackedStringArray("character", "world") instance=ExtResource("2_lerxa")]
+character = NodePath("..")
+world = NodePath("../..")
+
+[node name="timeunit_component" parent="Character_base" node_paths=PackedStringArray("character") instance=ExtResource("4_ri62v")]
+character = NodePath("..")

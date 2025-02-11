@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://wy3uq2nd43tu"]
 
-[ext_resource type="Script" path="res://move_component.gd" id="1_un3ve"]
+[ext_resource type="Script" path="res://movement/move_component.gd" id="1_un3ve"]
 
 [node name="move_component" type="Node2D"]
 position = Vector2(-64, -64)
