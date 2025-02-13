@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://d0vh18kendgfj"]
+[gd_scene load_steps=11 format=3 uid="uid://d0vh18kendgfj"]
 
 [ext_resource type="PackedScene" uid="uid://cgl3vgm2nvo5t" path="res://character/character_base.tscn" id="1_ha6sc"]
 [ext_resource type="Script" path="res://World.gd" id="1_s4xff"]
 [ext_resource type="Script" path="res://tilemaplayer.gd" id="2_7jxir"]
+[ext_resource type="PackedScene" uid="uid://08f0ouoanbnx" path="res://game_manager.tscn" id="2_502wg"]
 [ext_resource type="PackedScene" uid="uid://wy3uq2nd43tu" path="res://movement/move_component.tscn" id="2_lerxa"]
 [ext_resource type="PackedScene" uid="uid://wf71yc5adedy" path="res://input/input_component.tscn" id="3_tpdn8"]
 [ext_resource type="PackedScene" uid="uid://cnnpr4k2bfs13" path="res://camera/camera_2d.tscn" id="3_wbh8r"]
@@ -19,7 +20,7 @@ script = ExtResource("1_s4xff")
 character = NodePath("Character_base")
 tile_map_layer = NodePath("TileMapLayer")
 
-[node name="GameManager" type="Node2D" parent="."]
+[node name="GameManager" parent="." instance=ExtResource("2_502wg")]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_set = SubResource("TileSet_7q1wy")
