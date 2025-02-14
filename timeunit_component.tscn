@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bka4wqcivwrni"]
-
-[ext_resource type="Script" path="res://timeunit_component.gd" id="1_ps2y1"]
-
-[node name="timeunit_component" type="Node2D"]
-position = Vector2(-64, -64)
-script = ExtResource("1_ps2y1")

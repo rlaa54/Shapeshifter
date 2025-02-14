@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://o1ay5551iu6u"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gi1mf"]
+blend_mode = 3
+
+[node name="Fog" type="Sprite2D"]
+material = SubResource("CanvasItemMaterial_gi1mf")
+centered = false

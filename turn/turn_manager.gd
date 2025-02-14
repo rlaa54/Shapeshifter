@@ -3,7 +3,7 @@ extends Node2D
 signal turn_started(current_entity)
 signal turn_ended(current_entity)
 
-enum TurnState { PLAYER_TURN, ENEMY_TURN }
+enum TurnState { PLAYER_TURN, ALLY_TURN, ENEMY_TURN }
 
 var turn_order = [] # 턴 순서 리스트
 var current_turn_index = 0 # 현재 턴의 주체 인덱스

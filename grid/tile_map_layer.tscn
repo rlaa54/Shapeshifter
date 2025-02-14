@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3hxco36wmuo1"]
+
+[ext_resource type="Script" path="res://grid/tile_map_layer.gd" id="1_yetsi"]
+
+[sub_resource type="TileSet" id="TileSet_7q1wy"]
+tile_size = Vector2i(128, 128)
+
+[node name="TileMapLayer" type="TileMapLayer"]
+tile_set = SubResource("TileSet_7q1wy")
+script = ExtResource("1_yetsi")
