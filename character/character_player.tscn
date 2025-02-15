@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjh8b3i8fimqf"]
+
+[ext_resource type="PackedScene" uid="uid://cgl3vgm2nvo5t" path="res://character/character_base.tscn" id="1_8aq8s"]
+[ext_resource type="PackedScene" uid="uid://wf71yc5adedy" path="res://input/input_component.tscn" id="2_rx74y"]
+
+[node name="Character_player" instance=ExtResource("1_8aq8s")]
+
+[node name="input_component" parent="." index="4" node_paths=PackedStringArray("character", "move_component") instance=ExtResource("2_rx74y")]
+character = NodePath("..")
+move_component = NodePath("../move_component")

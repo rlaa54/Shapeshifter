@@ -1,37 +1,23 @@
-[gd_scene load_steps=10 format=3 uid="uid://d0vh18kendgfj"]
+[gd_scene load_steps=7 format=3 uid="uid://d0vh18kendgfj"]
 
-[ext_resource type="PackedScene" uid="uid://cgl3vgm2nvo5t" path="res://character/character_base.tscn" id="1_ha6sc"]
 [ext_resource type="Script" path="res://World.gd" id="1_s4xff"]
 [ext_resource type="PackedScene" uid="uid://08f0ouoanbnx" path="res://gamelogic/game_manager.tscn" id="2_502wg"]
-[ext_resource type="PackedScene" uid="uid://wy3uq2nd43tu" path="res://movement/move_component.tscn" id="2_lerxa"]
-[ext_resource type="PackedScene" uid="uid://wf71yc5adedy" path="res://input/input_component.tscn" id="3_tpdn8"]
 [ext_resource type="PackedScene" uid="uid://cnnpr4k2bfs13" path="res://visual/camera_2d.tscn" id="6_43ova"]
 [ext_resource type="PackedScene" uid="uid://o1ay5551iu6u" path="res://visual/fog.tscn" id="7_kjkjt"]
-[ext_resource type="PackedScene" uid="uid://d0kqq1f2emusa" path="res://turn/turn_manager.tscn" id="8_evh2h"]
+[ext_resource type="PackedScene" uid="uid://cjh8b3i8fimqf" path="res://character/character_player.tscn" id="7_vhjct"]
 [ext_resource type="PackedScene" uid="uid://b3hxco36wmuo1" path="res://grid/tile_map_layer.tscn" id="9_4cr4v"]
 
 [node name="World" type="Node2D" node_paths=PackedStringArray("character", "tile_map_layer")]
 script = ExtResource("1_s4xff")
-character = NodePath("Character_base")
+character = NodePath("Character_player")
 tile_map_layer = NodePath("TileMapLayer")
 
 [node name="game_manager" parent="." instance=ExtResource("2_502wg")]
 
-[node name="Character_base" parent="." instance=ExtResource("1_ha6sc")]
-position = Vector2(64, 64)
-
-[node name="input_component" parent="Character_base" node_paths=PackedStringArray("character", "move_component") instance=ExtResource("3_tpdn8")]
-character = NodePath("..")
-move_component = NodePath("../move_component")
-
-[node name="move_component" parent="Character_base" node_paths=PackedStringArray("character", "world") instance=ExtResource("2_lerxa")]
-character = NodePath("..")
-world = NodePath("../..")
+[node name="Character_player" parent="." instance=ExtResource("7_vhjct")]
 
 [node name="Camera2D" parent="." instance=ExtResource("6_43ova")]
 
 [node name="Fog" parent="." instance=ExtResource("7_kjkjt")]
-
-[node name="turn_manager" parent="." instance=ExtResource("8_evh2h")]
 
 [node name="TileMapLayer" parent="." instance=ExtResource("9_4cr4v")]

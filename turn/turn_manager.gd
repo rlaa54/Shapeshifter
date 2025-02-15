@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name Turn_manager
+
 signal turn_started(current_entity)
 signal turn_ended(current_entity)
 
@@ -9,15 +11,13 @@ var turn_order = [] # 턴 순서 리스트
 var current_turn_index = 0 # 현재 턴의 주체 인덱스
 var action_queue = []
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	turn_order = ["Player", "Ally", "Enemy"]
-	start_turn()
 
 func start_turn() -> void:
 	var current_entity = turn_order[current_turn_index]
 	print("Turn start: " + current_entity)
-	emit_signal("turn_started", current_entity)
+	turn_started.emit(current_entity)
 
 	if current_entity == "Player":
         # 플레이어가 행동할 수 있도록 대기
@@ -29,7 +29,7 @@ func start_turn() -> void:
 func end_turn() -> void:
 	var current_entity = turn_order[current_turn_index]
 	print("Turn end: " + current_entity)
-	emit_signal("turn_ended", current_entity)
+	turn_ended.emit(current_entity)
 
     # 다음 턴으로 변경 (순환 구조)
 	current_turn_index = (current_turn_index + 1) % turn_order.size()
