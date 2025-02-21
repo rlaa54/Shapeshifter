@@ -4,14 +4,10 @@ class_name Turn_manager
 
 enum TurnState { PLAYER_TURN, ALLY_TURN, ENEMY_TURN, COUNT }
 
-var turn_order = [] # 턴 순서 리스트
-var current_turn_index = 0 # 현재 턴의 주체 인덱스
 var action_queue = []
-var current_state
+var current_state : int = TurnState.PLAYER_TURN
 
 func _ready() -> void:
-	turn_order = ["Player", "Ally", "Enemy"]
-	current_state = TurnState.PLAYER_TURN
 	start_current_state()
 
 func start_current_state() -> void:
