@@ -14,12 +14,16 @@ func _process(_delta: float) -> void:
 
 	while (true):
 		# action을 실행
+		# result는 ActionResult를 반환받음
 		var result = action.perform()
 		# action이 실패했다면 다음 캐릭터로 넘어가지 않음
 		if not result.succeeded: 
 			return
+		# alternate는 예를 들어 캐릭터가 문 앞에서 이동을 눌렀을 경우 문을 여는 행위
+		# 의도에 맞게 자동으로 행위를 바꾼다
 		if result.alternate == null: 
 			break
+		# alternate가 있다면 다음 action으로 바꿔줌
 		action = result.alternate
 
 	# 다음 캐릭터로 넘어가기
