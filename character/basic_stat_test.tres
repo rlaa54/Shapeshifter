@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Basic_stat" load_steps=2 format=3 uid="uid://vtv8q07ni5ro"]
+
+[ext_resource type="Script" path="res://character/basic_stat.gd" id="1_k06c2"]
+
+[resource]
+script = ExtResource("1_k06c2")
+max_health = 100
+visible_range = 10

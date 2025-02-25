@@ -13,8 +13,8 @@ class ActionResult:
 	# 'true' if the [Action] was successful and energy should be consumed
 	var succeeded : bool
 	
-	func _init(s: bool) -> void:
-		self.succeeded = s
+	func _init(pSucceeded: bool) -> void:
+		self.succeeded = pSucceeded
 	
 	static func success() -> ActionResult:
 		return ActionResult.new(true)
@@ -22,10 +22,7 @@ class ActionResult:
 	static func failure() -> ActionResult:
 		return ActionResult.new(false)
 
-	# fix me 
-	# alternate를 반환할 때 대안행동이 없으면 alternative는 null을 반환하고
-	# alternative를 설정할 때는 그냥 설정할 수 있도록
-	func alternate(a: Action) -> ActionResult:
+	static func alternate(pAlternative: Action) -> ActionResult:
 		var result = ActionResult.new(true)
-		result.alternative = a
+		result.alternative = pAlternative
 		return result
