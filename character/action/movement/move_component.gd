@@ -1,4 +1,4 @@
-extends Node2D
+extends Action
 
 class_name Move_component
 
@@ -12,12 +12,6 @@ var next_point = Vector2()
 
 var is_moving = false
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	if !(is_moving):
-		return
-	move_to(next_point)
-
 func move_to(local_position):
 	character.position = local_position
 	path.remove_at(0)
@@ -26,3 +20,8 @@ func move_to(local_position):
 		tile_map_layer.clear_path()
 		return
 	next_point = path[0]
+
+func perform() -> ActionResult:
+	# 만일 액션이 실패했다면 
+	# 벽에 이동했거나 등등
+	

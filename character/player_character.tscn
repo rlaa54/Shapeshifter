@@ -1,12 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://xntphnwue3l1"]
 
 [ext_resource type="PackedScene" uid="uid://cgl3vgm2nvo5t" path="res://character/character_base.tscn" id="1_co04q"]
-[ext_resource type="Resource" uid="uid://bkrrhp1km0txj" path="res://character/player_stat_test.tres" id="2_jq5y3"]
+[ext_resource type="Script" path="res://character/player_character.gd" id="2_8igli"]
 [ext_resource type="PackedScene" uid="uid://wf71yc5adedy" path="res://character/input/input_component.tscn" id="3_1whtw"]
 [ext_resource type="PackedScene" uid="uid://wy3uq2nd43tu" path="res://character/action/movement/move_component.tscn" id="4_yjhlb"]
 
 [node name="Player_character" instance=ExtResource("1_co04q")]
-stats = ExtResource("2_jq5y3")
+script = ExtResource("2_8igli")
+stats = null
 
 [node name="input_component" parent="." index="3" node_paths=PackedStringArray("character", "move_component") instance=ExtResource("3_1whtw")]
 character = NodePath("..")
