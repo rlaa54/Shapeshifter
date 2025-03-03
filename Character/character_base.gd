@@ -11,6 +11,7 @@ func _ready():
 
 func get_action() -> Action:
 	var action = nextAction
+	# only perform once
 	nextAction = null
 	return action
 

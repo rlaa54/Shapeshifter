@@ -3,6 +3,7 @@ extends Node2D
 var action_queue = [] # 실행할 액션을 저장하는 큐 혹시 몰라서 일단 만들어봄
 var current_character = null # 현재 턴의 캐릭터
 var characters = [] # 화면 상의 모든 캐릭터를 포함하며 화면을 떠나서 처리하려는 모든 캐릭터
+@onready var pc = $"/root/World/Player_character"
 
 func gameloop() -> void:
 	# 현재 캐릭터의 action을 가져옴
