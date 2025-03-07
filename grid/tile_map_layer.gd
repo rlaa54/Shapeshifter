@@ -1,5 +1,7 @@
 extends TileMapLayer
 
+class_name Tile_map_layer
+
 enum Tile { OBSTACLE, START_POINT, END_POINT}
 
 const BASE_LINE_WIDTH = 3.0

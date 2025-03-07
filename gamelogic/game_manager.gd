@@ -5,6 +5,8 @@ var current_character = null # 현재 턴의 캐릭터
 var characters = [] # 화면 상의 모든 캐릭터를 포함하며 화면을 떠나서 처리하려는 모든 캐릭터
 @onready var pc = $"/root/World/Player_character"
 
+enum Direction { NW, N, NE, W, E, SW, S, SE, NONE }
+
 func gameloop() -> void:
 	# 현재 캐릭터의 action을 가져옴
 	var action = characters[current_character].get_action()
