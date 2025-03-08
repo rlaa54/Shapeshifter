@@ -11,7 +11,9 @@ var dirpos : Vector2
 
 func _init(pDir) -> void:
 	dir = pDir
-	tilesize = tile_map_layer.cell_size
+
+func _ready() -> void:
+	tilesize = tile_map_layer.cell_size.x
 
 func perform() -> ActionResult:
 	localpos = GameManager.pc.position
