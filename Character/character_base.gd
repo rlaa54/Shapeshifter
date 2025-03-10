@@ -8,6 +8,9 @@ var nextAction : Action
 
 func _ready():
 	stats._ready()
+	# 생성되면 GameManager에 등록
+	GameManager.characters.append(self)
+	print("Character_base ready")
 
 func get_action() -> Action:
 	var action = nextAction
