@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://d0vh18kendgfj"]
+[gd_scene load_steps=6 format=3 uid="uid://d0vh18kendgfj"]
 
 [ext_resource type="Script" uid="uid://c4csjxi0vnk3n" path="res://World.gd" id="1_s4xff"]
-[ext_resource type="PackedScene" uid="uid://08f0ouoanbnx" path="res://gamelogic/game_manager.tscn" id="2_502wg"]
 [ext_resource type="PackedScene" uid="uid://cnnpr4k2bfs13" path="res://visual/camera_2d.tscn" id="6_43ova"]
 [ext_resource type="PackedScene" uid="uid://xntphnwue3l1" path="res://character/player_character.tscn" id="6_p2s85"]
 [ext_resource type="PackedScene" uid="uid://o1ay5551iu6u" path="res://visual/fog.tscn" id="7_kjkjt"]
@@ -11,8 +10,6 @@
 script = ExtResource("1_s4xff")
 character = NodePath("Player_character")
 tile_map_layer = NodePath("TileMapLayer")
-
-[node name="game_manager" parent="." instance=ExtResource("2_502wg")]
 
 [node name="Camera2D" parent="." instance=ExtResource("6_43ova")]
 

@@ -2,7 +2,8 @@ extends TileMapLayer
 
 class_name Tile_map_layer
 
-enum Tile { OBSTACLE, START_POINT, END_POINT}
+# 타일의 종류
+enum Tile { NORMAL, OBSTACLE, START_POINT, END_POINT}
 
 const BASE_LINE_WIDTH = 3.0
 const DRAW_COLOR = Color.WHITE

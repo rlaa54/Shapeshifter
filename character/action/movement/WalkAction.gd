@@ -6,13 +6,11 @@ var dir : GameManager.Direction
 var localpos : Vector2
 var tilesize : int
 var dirpos : Vector2
-
-@onready var tile_map_layer = $"/root/World/TileMapLayer"
+var tile_map_layer : TileMapLayer
 
 func _init(pDir) -> void:
 	dir = pDir
-
-func _ready() -> void:
+	tile_map_layer = GameManager.tml
 	tilesize = tile_map_layer.cell_size.x
 
 func perform() -> ActionResult:
@@ -39,7 +37,7 @@ func perform() -> ActionResult:
 		return ActionResult.success()
 
 	# 가려는 방향으로 장애물이 있다면
-	if tile_map_layer.is_point_walkable(dirpos):
+	if not tile_map_layer.is_point_walkable(dirpos):
 		return ActionResult.failure()
 	# 장애물이 없다면
 	else:
