@@ -6,8 +6,6 @@ class_name Character_base
 
 var nextAction : Action = null
 
-enum Speed { VERYSLOW, SLOW, NORMAL, FAST, VERYFAST }
-
 func _ready():
 	stats._ready()
 

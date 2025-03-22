@@ -12,7 +12,7 @@ func executeAction() -> void:
 	while (not action_queue.is_empty()):
 		# 제일 앞의 액션을 꺼내 옴
 		var action = action_queue.pop_front()
-		# 플레이어를 위한 액션루프
+		# 플레이어를 위한 액션판정루프
 		while (true):
 			# result는 ActionResult
 			# 액션을 실행하고 그 결과를 반환
@@ -33,9 +33,11 @@ func executeAction() -> void:
 			# alternate가 있다면 다음 action으로 바꿔줌
 			action = result.alternative
 		# 플레이어의 액션이 끝남
-		# 다음 액션으로 넘어가기 위해
-		# TODO:몬스터들이 행동하기 위해 AI를 계획해야 함
+		# 다음 액션으로 넘어가기 위해 몬스터들의 actionpoint를 회복시켜야 함
+		
+		# TODO:몬스터 AI가 행동을 구성해야 함
 
 # 액션큐에 액션을 추가함
 func addAction(action: Action) -> void:
-	action_queue.append(action)
+	if action.canAddAction():
+		action_queue.append(action)
