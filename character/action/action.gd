@@ -2,33 +2,28 @@ extends Node2D
 
 class_name Action
 
+# 액션의 스피드 enum
+enum Speed { VERYSLOW = 150, SLOW = 125, NORMAL = 100, FAST = 50, VERYFAST = 25, LIGHT = 0 }
+
 # host는 action을 실행하는 캐릭터
 var host : Character_base
+# action의 스피드
+var action_speed : Speed = Speed.NORMAL
 
-func _init() -> void:
-	pass
-	# host 초기화 해줘야 함
-	# host = 
+func _init(speed : Speed, pHost : Character_base) -> void:
+	# action의 스피드를 초기화
+	action_speed = speed
+	# TODO: host 초기화 해줘야 함
+	host = pHost
 
-# action을 실행하기 위해 필요한 action point를 소비
-func consumeAP(ap : Basic_stat.Speed) -> void:
-	# 0이하로 내려가지 않게 함
-	if host.stats.cur_action_point - ap < 0:
-		host.stats.cur_action_point = 0
-	else:
-		host.stats.cur_action_point -= ap
-
-# action point를 회복 
-func regenAP(ap : Basic_stat.Speed) -> void:
-	host.stats.cur_action_point += ap
-
-# action point가 100이상이면 action_queue에 action을 추가할 수 있음
-func canAddAction() -> bool:
-	return host.stats.cur_action_point >= host.stats.max_action_point
+# action_speed를 변경함
+func setSpeed(speed : Speed) -> void:
+	action_speed = speed
 
 # perform은 action을 실행하고 그 결과를 반환
 # success 또는 failure 또는 다른 action을 담은 ActionResult를 반환
 func perform() -> ActionResult:
+	host.consumeAP(action_speed)
 	return ActionResult.success()
 
 class ActionResult:

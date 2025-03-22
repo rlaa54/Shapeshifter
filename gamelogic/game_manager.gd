@@ -33,11 +33,15 @@ func executeAction() -> void:
 			# alternate가 있다면 다음 action으로 바꿔줌
 			action = result.alternative
 		# 플레이어의 액션이 끝남
-		# 다음 액션으로 넘어가기 위해 몬스터들의 actionpoint를 회복시켜야 함
+		# TODO:다음 액션으로 넘어가기 위해 몬스터들의 actionpoint를 회복시켜야 함
+	
+		# TODO:몬스터 AI가 행동을 결정해야 함
 		
-		# TODO:몬스터 AI가 행동을 구성해야 함
 
 # 액션큐에 액션을 추가함
 func addAction(action: Action) -> void:
-	if action.canAddAction():
+	# 액션을 추가할 수 있는지 확인
+	# 현재는 액션의 주인으로 판정하지만
+	# TODO:캐릭터 개별의 action_point를 확인하도록 바꿔야 함
+	if action.host.canAddAction():
 		action_queue.append(action)
