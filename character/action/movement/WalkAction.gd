@@ -8,13 +8,15 @@ var tilesize : int
 var dirpos : Vector2
 var tile_map_layer : TileMapLayer
 
-func _init(pDir) -> void:
+# 각종 초기화
+func _init(pDir : GameManager.Direction, pHost : Character_base, pActionspeed : Action.Speed) -> void:
+	super._init(pHost, pActionspeed)
 	dir = pDir
 	tile_map_layer = GameManager.tml
 	tilesize = tile_map_layer.cell_size.x
 
 func perform() -> ActionResult:
-	localpos = GameManager.pc.position
+	localpos = host.position
 
 	if dir == GameManager.Direction.NW:
 		dirpos = localpos + Vector2(-tilesize, -tilesize)
@@ -43,5 +45,5 @@ func perform() -> ActionResult:
 	else:
 		# TODO: 장애물이 아니라 적이 있다거나 다른 상황이 있을 경우 추가해야함
 		# 그 방향으로 이동한다
-		GameManager.pc.position = dirpos
+		host.position = dirpos
 		return ActionResult.success()

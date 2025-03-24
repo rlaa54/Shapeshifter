@@ -10,11 +10,9 @@ var host : Character_base
 # action의 스피드
 var action_speed : Speed = Speed.NORMAL
 
-func _init(speed : Speed, pHost : Character_base) -> void:
-	# action의 스피드를 초기화
-	action_speed = speed
-	# TODO: host 초기화 해줘야 함
+func _init(pHost: Character_base, pActionSpeed: Speed) -> void:
 	host = pHost
+	action_speed = pActionSpeed
 
 # action_speed를 변경함
 func setSpeed(speed : Speed) -> void:

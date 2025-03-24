@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://n6skajtdcdbl"]
+
+[ext_resource type="PackedScene" uid="uid://cgl3vgm2nvo5t" path="res://character/character_base.tscn" id="1_t47h7"]
+[ext_resource type="Script" uid="uid://cy8psqd8sulit" path="res://character/monster.gd" id="2_mm5a4"]
+
+[node name="Monster" instance=ExtResource("1_t47h7")]
+script = ExtResource("2_mm5a4")
+stats = null
+
+[node name="Sprite2D" parent="." index="0"]
+self_modulate = Color(1, 0, 0, 1)

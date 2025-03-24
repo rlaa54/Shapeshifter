@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cgl3vgm2nvo5t"]
+[gd_scene load_steps=4 format=3 uid="uid://cgl3vgm2nvo5t"]
 
 [ext_resource type="Script" uid="uid://d0we1rexfi4wl" path="res://character/character_base.gd" id="1_0x1w6"]
 [ext_resource type="Resource" uid="uid://vtv8q07ni5ro" path="res://character/basic_stat_test.tres" id="2_8mxn3"]
 [ext_resource type="Texture2D" uid="uid://du0fhh303migl" path="res://icon.svg" id="2_10cb7"]
-[ext_resource type="PackedScene" uid="uid://bcainx58io027" path="res://character/energy_level_component.tscn" id="5_7uq66"]
 
 [node name="Character_base" type="CharacterBody2D"]
 script = ExtResource("1_0x1w6")
@@ -13,5 +12,3 @@ stats = ExtResource("2_8mxn3")
 texture = ExtResource("2_10cb7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-
-[node name="energy_level_component" parent="." instance=ExtResource("5_7uq66")]

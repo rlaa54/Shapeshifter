@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://d0vh18kendgfj"]
+[gd_scene load_steps=7 format=3 uid="uid://d0vh18kendgfj"]
 
 [ext_resource type="Script" uid="uid://c4csjxi0vnk3n" path="res://World.gd" id="1_s4xff"]
 [ext_resource type="PackedScene" uid="uid://cnnpr4k2bfs13" path="res://visual/camera_2d.tscn" id="6_43ova"]
+[ext_resource type="PackedScene" uid="uid://n6skajtdcdbl" path="res://character/monster.tscn" id="6_p1v5b"]
 [ext_resource type="PackedScene" uid="uid://xntphnwue3l1" path="res://character/player_character.tscn" id="6_p2s85"]
 [ext_resource type="PackedScene" uid="uid://o1ay5551iu6u" path="res://visual/fog.tscn" id="7_kjkjt"]
 [ext_resource type="PackedScene" uid="uid://b3hxco36wmuo1" path="res://grid/tile_map_layer.tscn" id="9_4cr4v"]
@@ -19,3 +20,6 @@ tile_map_layer = NodePath("TileMapLayer")
 
 [node name="Player_character" parent="." instance=ExtResource("6_p2s85")]
 position = Vector2(64, 64)
+
+[node name="Monster" parent="." instance=ExtResource("6_p1v5b")]
+position = Vector2(512, 512)

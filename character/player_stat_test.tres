@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_esndf")
 max_health = 100
+max_action_point = 0
 visible_range = 10
-speed = 0

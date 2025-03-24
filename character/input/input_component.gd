@@ -29,6 +29,9 @@ func _unhandled_input(event):
 		move(GameManager.Direction.S)
 	if event.is_action_pressed("SE_move"):
 		move(GameManager.Direction.SE)
+	
+	# 게임루프를 실행
+	GameManager.executeAction()
 
 func move(dir: GameManager.Direction) -> void:
-	GameManager.pc.setNextAction(WalkAction.new(dir))
+	GameManager.addAction(WalkAction.new(dir, GameManager.pc, Action.Speed.NORMAL))
