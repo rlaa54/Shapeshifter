@@ -1,6 +1,10 @@
+@icon("res://Asset/Art/behavior_tree/icons/limiter.svg")
+
 extends Decorator
 
 class_name LimiterDecorator
+
+# 제한 조건을 걸거나(limiter)
 
 @onready var cache_key = 'limiter_%s' % self.get_instance_id()
 

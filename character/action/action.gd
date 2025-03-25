@@ -1,4 +1,4 @@
-extends Node2D
+extends ActionLeaf
 
 class_name Action
 
