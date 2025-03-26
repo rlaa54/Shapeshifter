@@ -9,5 +9,5 @@
 script = ExtResource("2_8igli")
 stats = ExtResource("3_b1uet")
 
-[node name="input_component" parent="." index="3" node_paths=PackedStringArray("character") instance=ExtResource("3_1whtw")]
+[node name="input_component" parent="." index="2" node_paths=PackedStringArray("character") instance=ExtResource("3_1whtw")]
 character = NodePath("..")

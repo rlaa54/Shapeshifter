@@ -1,16 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://n6skajtdcdbl"]
+[gd_scene load_steps=5 format=3 uid="uid://n6skajtdcdbl"]
 
 [ext_resource type="PackedScene" uid="uid://cgl3vgm2nvo5t" path="res://character/character_base.tscn" id="1_t47h7"]
 [ext_resource type="Script" uid="uid://cy8psqd8sulit" path="res://character/monster.gd" id="2_mm5a4"]
 [ext_resource type="Script" uid="uid://cw8r26y8uu1em" path="res://AI/behavior_tree/nodes/bt_root.gd" id="3_erg4w"]
+[ext_resource type="Resource" uid="uid://clicnuiuwooq1" path="res://character/basic_monster_stat.tres" id="3_mkfwj"]
 
 [node name="Monster" instance=ExtResource("1_t47h7")]
 script = ExtResource("2_mm5a4")
-stats = null
+stats = ExtResource("3_mkfwj")
 
 [node name="Sprite2D" parent="." index="0"]
 self_modulate = Color(1, 0, 0, 1)
 
-[node name="Bt_root" type="Node" parent="." index="2"]
+[node name="ai_component" type="Node" parent="." index="2"]
 script = ExtResource("3_erg4w")
 metadata/_custom_type_script = "uid://cw8r26y8uu1em"

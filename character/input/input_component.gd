@@ -30,7 +30,7 @@ func _unhandled_input(event):
 	if event.is_action_pressed("SE_move"):
 		move(GameManager.Direction.SE)
 	
-	# 게임루프를 실행
+	# 플레이어 인풋이 끝나면 액션 루프를 실행
 	GameManager.executeAction()
 
 func move(dir: GameManager.Direction) -> void:

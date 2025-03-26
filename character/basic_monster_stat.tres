@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Basic_stat" load_steps=2 format=3 uid="uid://clicnuiuwooq1"]
+
+[ext_resource type="Script" uid="uid://cl41n0e0kdmln" path="res://character/basic_stat.gd" id="1_kqwco"]
+
+[resource]
+script = ExtResource("1_kqwco")
+max_health = 100
+max_action_point = 100
+visible_range = 10
+metadata/_custom_type_script = "uid://cl41n0e0kdmln"

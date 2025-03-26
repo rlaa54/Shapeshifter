@@ -22,4 +22,4 @@ tile_map_layer = NodePath("TileMapLayer")
 position = Vector2(64, 64)
 
 [node name="Monster" parent="." instance=ExtResource("6_p1v5b")]
-position = Vector2(512, 512)
+position = Vector2(704, 704)
