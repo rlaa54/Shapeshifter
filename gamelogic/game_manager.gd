@@ -3,6 +3,7 @@ extends Node2D
 var action_queue : Array[Action] = [] # 실행할 액션을 저장하는 큐 혹시 몰라서 일단 만들어봄
 var idx  = 0 # 현재 턴의 캐릭터
 var characters = [] # 화면 상의 모든 캐릭터를 포함하며 화면을 떠나서 처리하려는 모든 캐릭터
+var turn_count : float = 0.0 # 게임 시작 시 1.0로 초기화해야 함
 @onready var pc = $"/root/World/Player_character" # 플레이어 캐릭터
 @onready var tml = $"/root/World/TileMapLayer" # 타일맵 레이어
 enum Direction { NW, N, NE, W, E, SW, S, SE, NONE }
@@ -32,16 +33,26 @@ func executeAction() -> void:
 				break
 			# alternate가 있다면 다음 action으로 바꿔줌
 			action = result.alternative
+		
 		# 플레이어의 액션이 끝남
 		# TODO:다음 액션으로 넘어가기 위해 몬스터들의 actionpoint를 회복시켜야 함
-	
-		# TODO:몬스터 AI가 행동을 결정해야 함
+		if action.host == pc:
+			player_action_end()
 		
+		# TODO:몬스터 AI가 행동을 결정해야 함
+
+	# 모든 액션이 끝나고 턴이 끝남
+	# TODO: PC의 action_speed 만큼 턴을 증가시켜야 함
+	# veryfast 0.25 fast 0.5 normal 1.0 slow 1.5 veryslow 2.0
+	turn_count += 1.0
+
+# 플레이어의 액션이 끝남
+func player_action_end() -> void:
+	pass
 
 # 액션큐에 액션을 추가함
 func addAction(action: Action) -> void:
 	# 액션을 추가할 수 있는지 확인
 	# 현재는 액션의 주인으로 판정하지만
-	# TODO:캐릭터 개별의 action_point를 확인하도록 바꿔야 함
 	if action.host.canAddAction():
 		action_queue.append(action)

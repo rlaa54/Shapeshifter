@@ -3,7 +3,7 @@ extends ActionLeaf
 class_name Action
 
 # 액션의 스피드 enum
-enum Speed { VERYSLOW = 150, SLOW = 125, NORMAL = 100, FAST = 50, VERYFAST = 25, LIGHT = 0 }
+enum Speed { VERYSLOW = 200, SLOW = 150, NORMAL = 100, FAST = 50, VERYFAST = 25, LIGHT = 0 }
 
 # host는 action을 실행하는 캐릭터
 var host : Character_base

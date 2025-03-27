@@ -1,4 +1,4 @@
-@icon("res://Asset/Art/behavior_tree/icons/sequencer.svg")
+@icon("res://Asset/Art/icons/behavior_tree/sequencer.svg")
 
 extends Composite
 

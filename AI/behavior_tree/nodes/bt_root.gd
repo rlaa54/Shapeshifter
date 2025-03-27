@@ -1,4 +1,4 @@
-@icon("res://Asset/Art/behavior_tree/icons/tree.svg")
+@icon("res://Asset/Art/icons/behavior_tree/tree.svg")
 
 extends Behavior_tree
 
@@ -21,11 +21,12 @@ func _ready():
         disable()
         return
 
-func _physics_process(delta: float) -> void:
+# 플레이어 인풋이 끝남 시점에 호출되어야 함
+func decision(turncount : float) -> void:
     if not enabled:
         return
 
-    blackboard.set_value("delta", delta)
+    blackboard.set_value("turncount", turncount)
 
     self.get_child(0).tick(get_parent(), blackboard)
 

@@ -35,7 +35,7 @@ func perform() -> ActionResult:
 	elif dir == GameManager.Direction.SE:
 		dirpos = localpos + Vector2(tilesize, tilesize)
 	elif dir == GameManager.Direction.NONE:
-		# 만약 그냥 쉰다는 액션이 생기면 그걸 하도록 변경할 것!
+		# TODO: 그냥 쉬기 액션을 추가해야 함
 		return ActionResult.success()
 
 	# 가려는 방향으로 장애물이 있다면

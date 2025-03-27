@@ -1,4 +1,4 @@
-@icon("res://Asset/Art/behavior_tree/icons/condition.svg")
+@icon("res://Asset/Art/icons/behavior_tree/condition.svg")
 
 extends Leaf
 

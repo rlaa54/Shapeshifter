@@ -1,4 +1,4 @@
-@icon("res://Asset/Art/behavior_tree/icons/category_decorator.svg")
+@icon("res://Asset/Art/icons/behavior_tree/category_decorator.svg")
 
 extends Bt_node
 

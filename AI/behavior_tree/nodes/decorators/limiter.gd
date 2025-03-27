@@ -1,4 +1,4 @@
-@icon("res://Asset/Art/behavior_tree/icons/limiter.svg")
+@icon("res://Asset/Art/icons/behavior_tree/limiter.svg")
 
 extends Decorator
 
