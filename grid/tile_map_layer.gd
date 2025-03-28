@@ -39,7 +39,7 @@ func _ready() -> void:
 func _draw() -> void:
 	draw_grid()
 
-	draw_rect(Rect2(Vector2.ZERO, Vector2(2048, 2048)), Color.RED, false)
+	draw_rect(Rect2(Vector2.ZERO, Vector2(cell_size.x * num_tiles.x, cell_size.y * num_tiles.y)), Color.RED, false)
 
 	if _path.is_empty():
 		return

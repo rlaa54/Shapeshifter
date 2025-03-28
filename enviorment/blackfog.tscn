@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://o1ay5551iu6u"]
 
-[ext_resource type="Script" uid="uid://3v7uffxlf5nj" path="res://enviorment/fog.gd" id="1_7pd4c"]
+[ext_resource type="Script" uid="uid://3v7uffxlf5nj" path="res://enviorment/blackfog.gd" id="1_7pd4c"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gi1mf"]
 blend_mode = 3
 
-[node name="Fog" type="Sprite2D"]
+[node name="blackfog" type="Sprite2D"]
 material = SubResource("CanvasItemMaterial_gi1mf")
 centered = false
 script = ExtResource("1_7pd4c")

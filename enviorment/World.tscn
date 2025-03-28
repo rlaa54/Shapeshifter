@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://d0vh18kendgfj"]
+[gd_scene load_steps=8 format=3 uid="uid://d0vh18kendgfj"]
 
 [ext_resource type="Script" uid="uid://c4csjxi0vnk3n" path="res://enviorment/World.gd" id="1_s4xff"]
+[ext_resource type="PackedScene" uid="uid://dimh74hmd4n40" path="res://enviorment/grayfog.tscn" id="4_epu61"]
 [ext_resource type="PackedScene" uid="uid://cnnpr4k2bfs13" path="res://enviorment/camera_2d.tscn" id="6_43ova"]
 [ext_resource type="PackedScene" uid="uid://n6skajtdcdbl" path="res://character/monster.tscn" id="6_p1v5b"]
 [ext_resource type="PackedScene" uid="uid://xntphnwue3l1" path="res://character/player_character.tscn" id="6_p2s85"]
-[ext_resource type="PackedScene" uid="uid://o1ay5551iu6u" path="res://enviorment/fog.tscn" id="7_kjkjt"]
+[ext_resource type="PackedScene" uid="uid://o1ay5551iu6u" path="res://enviorment/blackfog.tscn" id="7_kjkjt"]
 [ext_resource type="PackedScene" uid="uid://b3hxco36wmuo1" path="res://grid/tile_map_layer.tscn" id="9_4cr4v"]
 
 [node name="World" type="Node2D"]
@@ -12,7 +13,9 @@ script = ExtResource("1_s4xff")
 
 [node name="Camera2D" parent="." instance=ExtResource("6_43ova")]
 
-[node name="Fog" parent="." instance=ExtResource("7_kjkjt")]
+[node name="blackfog" parent="." instance=ExtResource("7_kjkjt")]
+
+[node name="grayfog" parent="." instance=ExtResource("4_epu61")]
 
 [node name="TileMapLayer" parent="." instance=ExtResource("9_4cr4v")]
 
