@@ -2,7 +2,7 @@
 .godot/
 
 # ignore all asset
-Asset/
+Asset
 
 
 # ignore .vscode
