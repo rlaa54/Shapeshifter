@@ -1,8 +1,10 @@
 # Godot 4+ specific ignores
 .godot/
 
-# ignore all asset
-Asset/
+# ignore all asset file 
+# except folder
+Asset/**/*
+!Asset/**/
 
 # ignore .vscode
 .vscode/
