@@ -4,8 +4,8 @@ var action_queue : Array[Action] = [] # 실행할 액션을 저장하는 큐 혹
 var idx  = 0 # 현재 턴의 캐릭터
 var characters = [] # 화면 상의 모든 캐릭터를 포함하며 화면을 떠나서 처리하려는 모든 캐릭터
 var turn_count : float = 0.0 # 게임 시작 시 1.0로 초기화해야 함
-@onready var pc = $"/root/World/Player_character" # 플레이어 캐릭터
-@onready var tml = $"/root/World/TileMapLayer" # 타일맵 레이어
+var pc : Player_character = null # 플레이어 캐릭터
+var tml : TileMapLayer # 타일맵 레이어
 enum Direction { NW, N, NE, W, E, SW, S, SE, NONE }
 
 # 액션큐의 액션을 실행하고 판정함

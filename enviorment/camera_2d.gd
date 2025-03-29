@@ -10,16 +10,18 @@ var inputs={"cam_right": Vector2.RIGHT,
 @export var zoom_max = 2.0
 @export var zoom_min = 0.6
 
-@onready var tile_map_layer = $"/root/World/TileMapLayer"
-@onready var cell_size = tile_map_layer.cell_size
-@onready var num_tiles = tile_map_layer.num_tiles
+var tile_map_layer : Tile_map_layer = null
+var cell_size : Vector2i = Vector2i.ZERO
+var num_tiles : Vector2i = Vector2i.ZERO
 
 var viewport_width = ProjectSettings.get("display/window/size/viewport_width")
 var viewport_height = ProjectSettings.get("display/window/size/viewport_height")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	tile_map_layer = GameManager.tml
+	cell_size = tile_map_layer.cell_size
+	num_tiles = tile_map_layer.num_tiles
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("zoom_in"):	

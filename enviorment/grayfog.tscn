@@ -1,7 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://dimh74hmd4n40"]
-
-[ext_resource type="PackedScene" uid="uid://o1ay5551iu6u" path="res://enviorment/blackfog.tscn" id="1_uyqhp"]
-[ext_resource type="Script" uid="uid://sy58yxtggojx" path="res://enviorment/grayfog.gd" id="2_1hfvc"]
-
-[node name="grayfog" instance=ExtResource("1_uyqhp")]
-script = ExtResource("2_1hfvc")

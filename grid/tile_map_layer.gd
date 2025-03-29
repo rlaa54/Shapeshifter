@@ -19,6 +19,7 @@ var _end_point = Vector2i()
 var _path = PackedVector2Array()
 
 func _ready() -> void:
+	GameManager.tml = self
 	# Region should match the size of the playable area plus one (in tiles).
 	# In this demo, the playable area is 17×9 tiles, so the rect size is 18×10.
 	_astar.region = Rect2i(0, 0, num_tiles.x, num_tiles.y)

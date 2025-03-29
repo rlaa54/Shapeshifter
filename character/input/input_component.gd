@@ -4,13 +4,12 @@ class_name Input_component
 
 @export var character : Character_base
 
-@onready var tile_map_layer = $"/root/World/TileMapLayer"
-
+var tile_map_layer = null
 var click_position = Vector2()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	tile_map_layer = GameManager.tml
 
 func _unhandled_input(event):
 	if event.is_action_pressed("NW_move"):
