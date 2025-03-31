@@ -19,13 +19,16 @@ var grid_size_y : int
 var num_tile_x  : int
 var num_tile_y  : int
 
-func create_fogImage(color : Color, pzidx : int) -> void:
+func create_fogImage(color : Color) -> void:
     fog = self
     tile_map_layer = GameManager.tml
     grid_size_x = tile_map_layer.cell_size.x
     grid_size_y = tile_map_layer.cell_size.y
     num_tile_x = tile_map_layer.num_tiles.x
     num_tile_y = tile_map_layer.num_tiles.y
+    
+    @warning_ignore("integer_division")
+    position = Vector2((grid_size_x * num_tile_x) / 2, (grid_size_y * num_tile_y) / 2)
     # var fog_image_width = display_width
     # var fog_image_height = display_height
 
@@ -37,13 +40,13 @@ func create_fogImage(color : Color, pzidx : int) -> void:
 
     # z-index 화면 상에 표시되는 이미지의 순서를 결정한다
     # 클수록 위에 표시된다
-    z_index = pzidx
 
     # fogImage의 복사본을 생성하여 깨끗한 이미지를 만든다
     # cleanImage는 갱신되지 않아야 함
     cleanImage = fogImage.duplicate()
     
     update_fog_texture()
+    print(visibility_layer)
 
 # 이미지를 블렌드 함
 func fog_blend_light(new_grid_position: Vector2i, image : Image, image_offset : Vector2i, is_gray : bool) -> void:
@@ -59,6 +62,7 @@ func fog_blend_light(new_grid_position: Vector2i, image : Image, image_offset : 
 	# 이 경우, 빛 이미지를 플레이어의 위치에 맞춰서 병합한다.
 	# 이때, light_offset을 빼는 이유는 이미지의 중심(플레이어의 위치)을 기준으로 병합하기 때문이다.
     fogImage.blend_rect(image, light_rect, new_grid_position - image_offset)
+    update_fog_texture()
 
 # 텍스처를 업데이트 함
 func update_fog_texture():

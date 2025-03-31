@@ -1,11 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://n6skajtdcdbl"]
+[gd_scene load_steps=6 format=3 uid="uid://n6skajtdcdbl"]
 
 [ext_resource type="PackedScene" uid="uid://cgl3vgm2nvo5t" path="res://character/character_base.tscn" id="1_t47h7"]
 [ext_resource type="Script" uid="uid://cy8psqd8sulit" path="res://character/monster.gd" id="2_mm5a4"]
 [ext_resource type="Script" uid="uid://cw8r26y8uu1em" path="res://AI/behavior_tree/nodes/bt_root.gd" id="3_erg4w"]
 [ext_resource type="Resource" uid="uid://clicnuiuwooq1" path="res://character/stat/basic_monster_stat.tres" id="3_mkfwj"]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mkfwj"]
+light_mode = 2
+
 [node name="Monster" instance=ExtResource("1_t47h7")]
+light_mask = 2
+visibility_layer = 2
+material = SubResource("CanvasItemMaterial_mkfwj")
 script = ExtResource("2_mm5a4")
 stats = ExtResource("3_mkfwj")
 

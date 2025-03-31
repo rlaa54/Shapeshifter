@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://3v7uffxlf5nj" path="res://enviorment/fog.gd" id="1_7pd4c"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gi1mf"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7pd4c"]
+blend_mode = 3
 
 [node name="fog" type="Sprite2D"]
-material = SubResource("CanvasItemMaterial_gi1mf")
-centered = false
+material = SubResource("CanvasItemMaterial_7pd4c")
 script = ExtResource("1_7pd4c")
