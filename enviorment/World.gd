@@ -16,13 +16,13 @@ var plight : Point_Light
 func _ready() -> void:
 	tml = GameManager.tml
 	plight = GameManager.pc.pclight
-	#blackfog.create_fogImage(Color.BLACK)
+	blackfog.create_fogImage(Color.BLACK)
 	grayfog.create_fogImage(Color.GRAY)
-	#add_child(blackfog)
+	add_child(blackfog)
 	add_child(grayfog)
 
 func _process(_delta: float) -> void:
 	# 캐릭터의 위치를 중심으로 전장의 안개를 업데이트해 시야를 밝힌다
 	# 프레임마다 호출된다.
-	#blackfog.fog_blend_light(plight.global_position, plight.lightImage, plight.light_offset, false)
+	blackfog.fog_blend_light(plight.global_position, plight.lightImage, plight.light_offset, false)
 	grayfog.fog_blend_light(plight.global_position, plight.lightImage, plight.light_offset, true)

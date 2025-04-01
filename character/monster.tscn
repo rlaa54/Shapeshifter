@@ -5,18 +5,16 @@
 [ext_resource type="Script" uid="uid://cw8r26y8uu1em" path="res://AI/behavior_tree/nodes/bt_root.gd" id="3_erg4w"]
 [ext_resource type="Resource" uid="uid://clicnuiuwooq1" path="res://character/stat/basic_monster_stat.tres" id="3_mkfwj"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mkfwj"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_l5efm"]
 light_mode = 2
 
 [node name="Monster" instance=ExtResource("1_t47h7")]
-light_mask = 2
-visibility_layer = 2
-material = SubResource("CanvasItemMaterial_mkfwj")
 script = ExtResource("2_mm5a4")
 stats = ExtResource("3_mkfwj")
 
 [node name="Sprite2D" parent="." index="0"]
 self_modulate = Color(1, 0, 0, 1)
+material = SubResource("CanvasItemMaterial_l5efm")
 
 [node name="ai_component" type="Node" parent="." index="2"]
 script = ExtResource("3_erg4w")

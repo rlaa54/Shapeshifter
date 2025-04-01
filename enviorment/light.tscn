@@ -3,4 +3,5 @@
 [ext_resource type="Script" uid="uid://bq4jdmlsfyjkv" path="res://enviorment/light.gd" id="1_hbe5c"]
 
 [node name="light" type="PointLight2D"]
+blend_mode = 2
 script = ExtResource("1_hbe5c")
