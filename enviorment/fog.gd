@@ -46,7 +46,6 @@ func create_fogImage(color : Color) -> void:
     cleanImage = fogImage.duplicate()
     
     update_fog_texture()
-    print(visibility_layer)
 
 # 이미지를 블렌드 함
 func fog_blend_light(new_grid_position: Vector2i, image : Image, image_offset : Vector2i, is_gray : bool) -> void:

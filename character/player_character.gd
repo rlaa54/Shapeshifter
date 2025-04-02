@@ -8,4 +8,4 @@ func _ready() -> void:
     GameManager.pc = self
     pclight = Point_Light.new()
     add_child(pclight)
-    pclight.light_image_init(3)
+    pclight.light_image_init(stats.visible_range)

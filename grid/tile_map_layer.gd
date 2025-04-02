@@ -42,6 +42,8 @@ func _draw() -> void:
 
 	draw_rect(Rect2(Vector2.ZERO, Vector2(cell_size.x * num_tiles.x, cell_size.y * num_tiles.y)), Color.RED, false)
 
+	draw_circle(Vector2(128, 128), BASE_LINE_WIDTH * 20.0, Color.RED)
+	
 	if _path.is_empty():
 		return
 
@@ -62,6 +64,7 @@ func draw_grid():
 				  Vector2(num_tiles.x * cell_size.x, y * cell_size.y),
 				  DRAW_COLOR, 1.0)
 
+# 로컬 포지션을 받아 맵에 맞춰 변환 후 타일의 정중앙 로컬 포지션으로 변환
 func round_local_position(local_position):
 	return map_to_local(local_to_map(local_position))
 
@@ -94,3 +97,32 @@ func find_path(local_start_point, local_end_point):
 	queue_redraw()
 
 	return _path.duplicate()
+
+# 원 안에 있는 지 체크하고 불타입 반환
+func inside_circle(center : Vector2, tile : Vector2, radius : float) -> bool:
+	var dx = center.x - tile.x
+	var dy = center.y - tile.y
+	var distance = dx * dx + dy * dy
+	return distance <= radius * radius
+
+# 모든 타일을 검사할 수 없으니
+# 사각 경계를 그려
+# 경계 안의 타일들이 
+# 원 안에 있는지 타일을 검사하는 방법
+func bounding_box_check(center : Vector2, radius : float) -> void:
+	var top = ceil(center.y - radius)
+	var bottom = floor(center.y + radius)
+	var left = ceil(center.x - radius)
+	var right = floor(center.x + radius)
+
+	for y in range(top, bottom):
+		for x in range(left, right):
+			if inside_circle(center, Vector2(x, y), radius):
+				var circle_in_tile = Vector2(x, y)
+				
+
+# 사용 예시
+func test_bbc():
+	var center = GameManager.pc.position
+	var radius = (GameManager.pc.stats.visible_range * cell_size.x) + (cell_size.x / 2.0)
+	bounding_box_check(center, radius)

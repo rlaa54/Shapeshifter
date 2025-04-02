@@ -45,6 +45,7 @@ func executeAction() -> void:
 	# TODO: PC의 action_speed 만큼 턴을 증가시켜야 함
 	# veryfast 0.25 fast 0.5 normal 1.0 slow 1.5 veryslow 2.0
 	turn_count += 1.0
+	
 
 # 플레이어의 액션이 끝남
 func player_action_end() -> void:

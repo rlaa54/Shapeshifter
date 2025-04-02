@@ -5,7 +5,7 @@ class_name WalkAction
 var dir : GameManager.Direction
 var localpos : Vector2
 var tilesize : int
-var dirpos : Vector2
+var dirpos : Vector2 = Vector2.ZERO
 var tile_map_layer : TileMapLayer
 
 # 각종 초기화
@@ -17,7 +17,7 @@ func _init(pDir : GameManager.Direction, pHost : Character_base, pActionspeed : 
 
 func perform() -> ActionResult:
 	localpos = host.position
-
+	dirpos = Vector2.ZERO
 	if dir == GameManager.Direction.NW:
 		dirpos = localpos + Vector2(-tilesize, -tilesize)
 	elif dir == GameManager.Direction.N:
