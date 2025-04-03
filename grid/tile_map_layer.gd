@@ -4,9 +4,16 @@ class_name Tile_map_layer
 
 # 타일의 종류
 enum Tile { NORMAL, OBSTACLE, START_POINT, END_POINT}
+# 원의 종류
+# 자연스러운 원을 원할 경우 0.5를 더해야 함
+enum Circle { VERYSMALL = 2, SMALL = 3, NORMAL = 5, BIG = 7, VERYBIG = 9 }
+
 
 const BASE_LINE_WIDTH = 3.0
 const DRAW_COLOR = Color.WHITE
+
+# 원에 포함된 타일들의 로컬좌표
+var circletiles : Array[PackedVector2Array]
 
 var cell_size = tile_set.tile_size
 @export var num_tiles = Vector2i(16, 16)
@@ -20,6 +27,15 @@ var _path = PackedVector2Array()
 
 func _ready() -> void:
 	GameManager.tml = self
+
+	# 원의 종류 만큼
+	for c in Circle:
+		# Circle[c]는 enum의 값을 가져온다
+		# 원의 반지름
+		# 우리가 원하는 건 거기에 0.5를 더한
+		# 자연스러운 원이다
+		circletiles.append(bounding_box_circle(Vector2(0,0), Circle[c] + 0.5))
+	
 	# Region should match the size of the playable area plus one (in tiles).
 	# In this demo, the playable area is 17×9 tiles, so the rect size is 18×10.
 	_astar.region = Rect2i(0, 0, num_tiles.x, num_tiles.y)
@@ -29,7 +45,9 @@ func _ready() -> void:
 	_astar.default_estimate_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
 	_astar.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_ALWAYS
 	_astar.update()
-
+	
+	# 왼쪽에서 오른쪽으로 위에서 아래로 모든 타일을 검사하여
+	# 그 타일이 장애물 타일이면 AStarGrid2D에 장애물로 등록한다.
 	for i in range(_astar.region.position.x, _astar.region.end.x):
 		for j in range(_astar.region.position.y, _astar.region.end.y):
 			var pos = Vector2i(i, j)
@@ -42,7 +60,7 @@ func _draw() -> void:
 
 	draw_rect(Rect2(Vector2.ZERO, Vector2(cell_size.x * num_tiles.x, cell_size.y * num_tiles.y)), Color.RED, false)
 
-	draw_circle(Vector2(128, 128), BASE_LINE_WIDTH * 20.0, Color.RED)
+	# draw_circle(Vector2(64 +128*2, 64), BASE_LINE_WIDTH * 20.0, Color.RED)
 	
 	if _path.is_empty():
 		return
@@ -68,6 +86,8 @@ func draw_grid():
 func round_local_position(local_position):
 	return map_to_local(local_to_map(local_position))
 
+# 로컬 포지션을 받아 그 타일이 이동 가능한지 체크
+# 이동 가능하면 true 반환, 불가능하다면 false 반환
 func is_point_walkable(local_position):
 	var map_position = local_to_map(local_position)
 	if _astar.is_in_boundsv(map_position):
@@ -109,20 +129,48 @@ func inside_circle(center : Vector2, tile : Vector2, radius : float) -> bool:
 # 사각 경계를 그려
 # 경계 안의 타일들이 
 # 원 안에 있는지 타일을 검사하는 방법
-func bounding_box_check(center : Vector2, radius : float) -> void:
-	var top = ceil(center.y - radius)
-	var bottom = floor(center.y + radius)
-	var left = ceil(center.x - radius)
-	var right = floor(center.x + radius)
+# 그리고 그 타일들의 로컬좌표를 배열에 담아 반환
+func bounding_box_circle(center : Vector2, radius : float) -> PackedVector2Array:
+	# 타일의 좌표를 가질 배열
+	var local_tiles : PackedVector2Array
+	var min_tiles = -(num_tiles.x / 2.0)
+	var max_tiles = num_tiles.x / 2.0
 
-	for y in range(top, bottom):
-		for x in range(left, right):
+	var top = clampf(ceil(center.y - radius), min_tiles, max_tiles)
+	var bottom = clampf(floor(center.y + radius), min_tiles, max_tiles)
+	var left = clampf(ceil(center.x - radius), min_tiles, max_tiles)
+	var right = clampf(floor(center.x + radius), min_tiles, max_tiles)
+
+	for y in range(top, bottom + 1):
+		for x in range(left, right + 1):
 			if inside_circle(center, Vector2(x, y), radius):
-				var circle_in_tile = Vector2(x, y)
-				
+				local_tiles.append(map_to_local(Vector2(x, y)))
+	return local_tiles
 
-# 사용 예시
-func test_bbc():
-	var center = GameManager.pc.position
-	var radius = (GameManager.pc.stats.visible_range * cell_size.x) + (cell_size.x / 2.0)
-	bounding_box_check(center, radius)
+# 원의 경계 안에 있는 타일들을 검사하는 방법
+# sqrt 연산을 쓰기 때문에 조금 느릴 수 있다
+# 자주 쓰이지는 않음
+# 원의 경계가 필요할 때 사용
+func outline_circle(center : Vector2, radius : float) -> PackedVector2Array:
+	var local_tiles : PackedVector2Array
+
+	for r in range(0, floor(radius * sqrt(0.5)) + 1):
+		var d = floor(sqrt(radius * radius - r * r))
+		local_tiles.append(map_to_local(Vector2(center.x - d, center.y + r)))
+		local_tiles.append(map_to_local(Vector2(center.x + d, center.y + r)))
+		local_tiles.append(map_to_local(Vector2(center.x - d, center.y - r)))
+		local_tiles.append(map_to_local(Vector2(center.x + d, center.y - r)))
+		local_tiles.append(map_to_local(Vector2(center.x - r, center.y + d)))
+		local_tiles.append(map_to_local(Vector2(center.x + r, center.y + d)))
+		local_tiles.append(map_to_local(Vector2(center.x - r, center.y - d)))
+		local_tiles.append(map_to_local(Vector2(center.x + r, center.y - d)))
+	return local_tiles
+
+# localpos에는 128의 배수를 넣어야 의도한 대로 작동할 것
+# 128은 타일의 크기이고 한 칸이다
+func circle_tile_move(localpos: Vector2) -> Array[PackedVector2Array]:
+	var dcircle_tiles = circletiles.duplicate(true)
+	for c in dcircle_tiles.size():
+		for t in dcircle_tiles[c].size():
+			dcircle_tiles[c][t] = dcircle_tiles[c][t] + localpos
+	return dcircle_tiles

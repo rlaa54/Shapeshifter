@@ -1,10 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://b3hxco36wmuo1"]
+[gd_scene load_steps=5 format=3 uid="uid://b3hxco36wmuo1"]
 
+[ext_resource type="Texture2D" uid="uid://b1bl1r8vhla5o" path="res://Asset/Art/testgreen.png" id="1_iot5f"]
 [ext_resource type="Script" uid="uid://c6m83esl31w20" path="res://grid/tile_map_layer.gd" id="1_yetsi"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0uq4d"]
+texture = ExtResource("1_iot5f")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_7q1wy"]
 tile_size = Vector2i(128, 128)
+sources/1 = SubResource("TileSetAtlasSource_0uq4d")
 
 [node name="TileMapLayer" type="TileMapLayer"]
+tile_map_data = PackedByteArray(0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0)
 tile_set = SubResource("TileSet_7q1wy")
 script = ExtResource("1_yetsi")
