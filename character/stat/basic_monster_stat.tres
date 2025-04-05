@@ -6,5 +6,5 @@
 script = ExtResource("1_kqwco")
 max_health = 100
 max_action_point = 100
-visible_range = 10
+visible_range = 5
 metadata/_custom_type_script = "uid://cl41n0e0kdmln"

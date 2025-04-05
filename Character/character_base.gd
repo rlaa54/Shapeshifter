@@ -7,7 +7,7 @@ class_name Character_base
 var nextAction : Action = null
 
 func _ready():
-	stats._ready()
+	stats.ready(self)
 
 	# 생성되면 GameManager에 등록
 	GameManager.characters.append(self)

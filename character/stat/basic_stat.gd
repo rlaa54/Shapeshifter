@@ -5,22 +5,22 @@ class_name Basic_stat
 @export var max_health : int
 # 플레이어의 경우 인풋에 따라 언제든지 행동해야 함으로 0으로 설정해야 함
 @export var max_action_point : int = 100 
-@export var visible_range : int
+@export var visible_range : Tile_map_layer.Circle = Tile_map_layer.Circle.NORMAL
 
 var cur_health : int
 var cur_action_point : int = 0
+var host : Character_base
+var sight : PackedVector2Array
 
-func _ready():
-    print("hello Basic_stat ready")
-    visible_range_to_grid()
+func ready(phost: Character_base) -> void:
+    print("hello my name is:", self)
+    print("hello ready for:", phost.name)
+    host = phost
+    sight_init()
+    sight_update(host.position)
 
-# 시야 범위가 짝수일 경우 +1을 해준다
-# 왜냐하면 시야 범위는 홀수여야 한다
-# 시야가 1이면 플레이어 1칸 
-# 시야가 2이면 양옆으로 1칸씩 총 3칸이기 때문에
-func visible_range_to_grid() -> void:
-    # 만약 시야가 없다면 시야는 없어야 한다
-    if visible_range == 0:
-        visible_range = 0
-    elif visible_range % 2 == 0:
-        visible_range += 1
+func sight_init() -> void:
+    sight = GameManager.tml.get_circletiles(visible_range).duplicate()
+
+func sight_update(localpos : Vector2) -> void:
+    GameManager.tml.circle_tile_move(localpos, sight)

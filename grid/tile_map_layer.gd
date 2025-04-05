@@ -35,7 +35,7 @@ func _ready() -> void:
 		# 우리가 원하는 건 거기에 0.5를 더한
 		# 자연스러운 원이다
 		circletiles.append(bounding_box_circle(Vector2(0,0), Circle[c] + 0.5))
-	
+
 	# Region should match the size of the playable area plus one (in tiles).
 	# In this demo, the playable area is 17×9 tiles, so the rect size is 18×10.
 	_astar.region = Rect2i(0, 0, num_tiles.x, num_tiles.y)
@@ -166,11 +166,30 @@ func outline_circle(center : Vector2, radius : float) -> PackedVector2Array:
 		local_tiles.append(map_to_local(Vector2(center.x + r, center.y - d)))
 	return local_tiles
 
-# localpos에는 128의 배수를 넣어야 의도한 대로 작동할 것
-# 128은 타일의 크기이고 한 칸이다
-func circle_tile_move(localpos: Vector2) -> Array[PackedVector2Array]:
-	var dcircle_tiles = circletiles.duplicate(true)
+# localpos에는 로컬 좌표를 넣어야 함
+func circle_tile_move(localpos: Vector2, dcircle_tiles : PackedVector2Array) -> PackedVector2Array:
+	# cell_size.x/2, cell_size.y/2를 빼는 이유는
+	# 타일만큼만 움직여야 되는데
+	# 타일의 중앙이 한 번 더 들어감
+	localpos -= Vector2(cell_size.x/2, cell_size.y/2)	
+	
 	for c in dcircle_tiles.size():
-		for t in dcircle_tiles[c].size():
-			dcircle_tiles[c][t] = dcircle_tiles[c][t] + localpos
+		dcircle_tiles.set(c, dcircle_tiles[c] + localpos)
+	
 	return dcircle_tiles
+
+func get_circletiles(circle : Circle) -> PackedVector2Array:
+	match circle:
+		Circle.VERYSMALL:
+			return circletiles[0]
+		Circle.SMALL:
+			return circletiles[1]
+		Circle.NORMAL:
+			return circletiles[2]
+		Circle.BIG:
+			return circletiles[3]
+		Circle.VERYBIG:
+			return circletiles[4]
+		_:
+			print("Circle type not found")
+			return []
