@@ -15,7 +15,7 @@ const DRAW_COLOR = Color.WHITE
 # 원에 포함된 타일들의 로컬좌표
 var circletiles : Array[PackedVector2Array]
 
-var cell_size = tile_set.tile_size
+var cell_size : Vector2i = tile_set.tile_size
 @export var num_tiles = Vector2i(16, 16)
 
 # the object for pathfinding on 2d grids.
@@ -133,13 +133,11 @@ func inside_circle(center : Vector2, tile : Vector2, radius : float) -> bool:
 func bounding_box_circle(center : Vector2, radius : float) -> PackedVector2Array:
 	# 타일의 좌표를 가질 배열
 	var local_tiles : PackedVector2Array
-	var min_tiles = -(num_tiles.x / 2.0)
-	var max_tiles = num_tiles.x / 2.0
 
-	var top = clampf(ceil(center.y - radius), min_tiles, max_tiles)
-	var bottom = clampf(floor(center.y + radius), min_tiles, max_tiles)
-	var left = clampf(ceil(center.x - radius), min_tiles, max_tiles)
-	var right = clampf(floor(center.x + radius), min_tiles, max_tiles)
+	var top = ceil(center.y - radius)
+	var bottom = floor(center.y + radius)
+	var left = ceil(center.x - radius)
+	var right = floor(center.x + radius)
 
 	for y in range(top, bottom + 1):
 		for x in range(left, right + 1):
@@ -171,6 +169,7 @@ func circle_tile_move(localpos: Vector2, dcircle_tiles : PackedVector2Array) -> 
 	# cell_size.x/2, cell_size.y/2를 빼는 이유는
 	# 타일만큼만 움직여야 되는데
 	# 타일의 중앙이 한 번 더 들어감
+	@warning_ignore("integer_division")
 	localpos -= Vector2(cell_size.x/2, cell_size.y/2)	
 	
 	for c in dcircle_tiles.size():

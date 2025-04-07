@@ -5,12 +5,36 @@ class_name Character_base
 @export var stats : Basic_stat
 
 var nextAction : Action = null
+var type : Basic_stat.Type = Basic_stat.Type.ENEMY
 
 func _ready():
 	stats.ready(self)
 
 	# 생성되면 GameManager에 등록
-	GameManager.characters.append(self)
+	# GameManager.active_characters.append(self)
+
+# 가장 가까운 적을 찾아 반환
+func get_closest_enemy() -> Character_base:
+	var closest_enemy = null
+	var closest_distance = INF
+
+	for c in GameManager.active_characters:
+		# 자신은 제외
+		if c == self:
+			continue
+		
+		# 다른 타입의 캐릭터만 검사함
+		# 예를 들어 플레이어면 몬스터만
+		# 몬스터면 플레이어만			
+		if c.type == type:
+			continue
+
+		var distance = position.distance_to(c.position)
+		if distance < closest_distance:
+			closest_distance = distance
+			closest_enemy = c
+
+	return closest_enemy
 
 func get_action() -> Action:
 	var action = nextAction

@@ -11,11 +11,15 @@ var cur_health : int
 var cur_action_point : int = 0
 var host : Character_base
 var sight : PackedVector2Array
+var local_visible_range : float
+
+enum Type { PLAYER, ENEMY, NPC }
 
 func ready(phost: Character_base) -> void:
     print("hello my name is:", self)
     print("hello ready for:", phost.name)
     host = phost
+    local_visible_range = GameManager.tml.cell_size.x * (visible_range + 0.5)
     sight_init()
     sight_update(host.position)
 

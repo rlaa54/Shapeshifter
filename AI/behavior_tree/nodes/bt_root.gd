@@ -22,7 +22,7 @@ func _ready():
         return
 
 # 플레이어 인풋이 끝남 시점에 호출되어야 함
-func decision(turncount : float) -> void:
+func decision_and_behavior(turncount : float) -> void:
     if not enabled:
         return
 

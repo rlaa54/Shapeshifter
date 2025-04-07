@@ -2,7 +2,7 @@ extends Node2D
 
 var action_queue : Array[Action] = [] # 실행할 액션을 저장하는 큐 혹시 몰라서 일단 만들어봄
 var idx  = 0 # 현재 턴의 캐릭터
-var characters = [] # 화면 상의 모든 캐릭터를 포함하며 화면을 떠나서 처리하려는 모든 캐릭터
+var active_characters = [] # 활성화된 모든 캐릭터
 var turn_count : float = 0.0 # 게임 시작 시 1.0로 초기화해야 함
 var pc : Player_character = null # 플레이어 캐릭터
 var tml : TileMapLayer # 타일맵 레이어
