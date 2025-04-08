@@ -23,18 +23,18 @@ material = SubResource("CanvasItemMaterial_l5efm")
 script = ExtResource("3_erg4w")
 metadata/_custom_type_script = "uid://cw8r26y8uu1em"
 
-[node name="close_to_target" type="Node" parent="ai_component" index="0"]
+[node name="first_encount" type="Node" parent="ai_component" index="0"]
 script = ExtResource("5_l5efm")
 metadata/_custom_type_script = "uid://d36d043od6gey"
 
-[node name="set_target" type="Node" parent="ai_component/close_to_target" index="0"]
+[node name="set_closest_target" type="Node" parent="ai_component/first_encount" index="0"]
 script = ExtResource("6_l2s11")
 metadata/_custom_type_script = "uid://d11gkxo37sve"
 
-[node name="target_is_in_sight" type="Node" parent="ai_component/close_to_target" index="1"]
+[node name="target_is_in_sight" type="Node" parent="ai_component/first_encount" index="1"]
 script = ExtResource("6_vf6uh")
 metadata/_custom_type_script = "uid://frdtyykx4net"
 
-[node name="close_to_attack_range" type="Node" parent="ai_component/close_to_target" index="2"]
+[node name="close_to_attack_range" type="Node" parent="ai_component/first_encount" index="2"]
 script = ExtResource("7_l2s11")
 metadata/_custom_type_script = "uid://d11gkxo37sve"
