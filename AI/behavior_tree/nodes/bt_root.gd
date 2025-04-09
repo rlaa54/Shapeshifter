@@ -5,30 +5,21 @@ extends Behavior_tree
 class_name Bt_root
 
 # Bt_root는 최상위 노드로, 하위 노드 1개만 두고, 
-# 매 프레임마다 자식의 tick()을 호출합니다. 
-# 여기서 blackboard(게임 상태 저장 객체)를 매 프레임에 업데이트하거나, 
-# delta(프레임 시간) 등을 전달할 수 있습니다.
-
-const Blackboard = preload("../blackboard.gd")
+# 결정하고 행동할 때 마다 자식의 perform()을 호출합니다. 
 
 @export var enabled : bool = true
 
-@onready var blackboard = Blackboard.new()
+# @onready var actor = $"../.."
+
+# var blackboard : Blackboard = null
+
+# func set_blackboard(_blackboard : Blackboard) -> void:
+#     blackboard = _blackboard
 
 func _ready():
-    if self.get_child_count() != 1:
-        print("Behavior Tree error: Root should have one child")
+    # if self.get_child_count() != 1:
+    #     print("Behavior Tree error: Root should have one child")
         disable()
-        return
-
-# 플레이어 인풋이 끝남 시점에 호출되어야 함
-func decision_and_behavior(turncount : float) -> void:
-    if not enabled:
-        return
-
-    blackboard.set_value("turncount", turncount)
-
-    self.get_child(0).tick(get_parent(), blackboard)
 
 func enable():
     self.enabled = true

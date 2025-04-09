@@ -5,7 +5,7 @@ class_name Character_base
 @export var stats : Basic_stat
 
 var nextAction : Action = null
-var type : Basic_stat.Type = Basic_stat.Type.ENEMY
+
 
 func _ready():
 	stats.ready(self)
@@ -26,7 +26,7 @@ func get_closest_enemy() -> Character_base:
 		# 다른 타입의 캐릭터만 검사함
 		# 예를 들어 플레이어면 몬스터만
 		# 몬스터면 플레이어만			
-		if c.type == type:
+		if c.stats.type == stats.type:
 			continue
 
 		var distance = position.distance_to(c.position)

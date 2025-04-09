@@ -10,12 +10,11 @@ var tile_map_layer : TileMapLayer
 
 # 각종 초기화
 func _init(pDir : GameManager.Direction, pHost : Character_base, pActionspeed : Action.Speed) -> void:
-	super._init(pHost, pActionspeed)
 	dir = pDir
 	tile_map_layer = GameManager.tml
 	tilesize = tile_map_layer.cell_size.x
 
-func perform() -> ActionResult:
+func tick(actor, blackboard) -> ActionResult:
 	localpos = host.position
 	dirpos = Vector2.ZERO
 	if dir == GameManager.Direction.NW:

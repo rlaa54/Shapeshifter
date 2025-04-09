@@ -33,4 +33,4 @@ func _unhandled_input(event):
 	GameManager.executeAction()
 
 func move(dir: GameManager.Direction) -> void:
-	GameManager.addAction(WalkAction.new(dir, GameManager.pc, Action.Speed.NORMAL))
+	GameManager.addAction(WalkAction.new(dir, get_parent(), get_parent().stats.character_speed))

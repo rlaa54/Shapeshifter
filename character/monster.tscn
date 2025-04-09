@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://cw8r26y8uu1em" path="res://AI/behavior_tree/nodes/bt_root.gd" id="3_erg4w"]
 [ext_resource type="Resource" uid="uid://clicnuiuwooq1" path="res://character/stat/basic_monster_stat.tres" id="3_mkfwj"]
 [ext_resource type="Script" uid="uid://d36d043od6gey" path="res://AI/behavior_tree/nodes/composites/sequence.gd" id="5_l5efm"]
-[ext_resource type="Script" uid="uid://ye0t53mpsfk5" path="res://AI/behavior/set_closest_target.gd" id="6_l2s11"]
+[ext_resource type="Script" uid="uid://ye0t53mpsfk5" path="res://character/action/set_closest_target.gd" id="6_l2s11"]
 [ext_resource type="Script" uid="uid://dg416lq7f5e36" path="res://AI/condition/Is_in_sight.gd" id="6_vf6uh"]
 [ext_resource type="Script" uid="uid://d11gkxo37sve" path="res://character/action/action.gd" id="7_l2s11"]
 
@@ -19,22 +19,22 @@ stats = ExtResource("3_mkfwj")
 self_modulate = Color(1, 0, 0, 1)
 material = SubResource("CanvasItemMaterial_l5efm")
 
-[node name="ai_component" type="Node" parent="." index="2"]
+[node name="Idle" type="Node" parent="Ai_component" index="0"]
 script = ExtResource("3_erg4w")
 metadata/_custom_type_script = "uid://cw8r26y8uu1em"
 
-[node name="first_encount" type="Node" parent="ai_component" index="0"]
+[node name="first_encount" type="Node" parent="Ai_component/Idle" index="0"]
 script = ExtResource("5_l5efm")
 metadata/_custom_type_script = "uid://d36d043od6gey"
 
-[node name="set_closest_target" type="Node" parent="ai_component/first_encount" index="0"]
+[node name="set_closest_target" type="Node" parent="Ai_component/Idle/first_encount" index="0"]
 script = ExtResource("6_l2s11")
 metadata/_custom_type_script = "uid://d11gkxo37sve"
 
-[node name="target_is_in_sight" type="Node" parent="ai_component/first_encount" index="1"]
+[node name="target_is_in_sight" type="Node" parent="Ai_component/Idle/first_encount" index="1"]
 script = ExtResource("6_vf6uh")
 metadata/_custom_type_script = "uid://frdtyykx4net"
 
-[node name="close_to_attack_range" type="Node" parent="ai_component/first_encount" index="2"]
+[node name="close_to_attack_range" type="Node" parent="Ai_component/Idle/first_encount" index="2"]
 script = ExtResource("7_l2s11")
 metadata/_custom_type_script = "uid://d11gkxo37sve"

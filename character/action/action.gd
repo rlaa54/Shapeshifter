@@ -10,17 +10,14 @@ var host : Character_base
 # action의 스피드
 var action_speed : Speed = Speed.NORMAL
 
-func _init(pHost: Character_base, pActionSpeed: Speed) -> void:
-	host = pHost
-	action_speed = pActionSpeed
-
 # action_speed를 변경함
 func setSpeed(speed : Speed) -> void:
 	action_speed = speed
 
-# perform은 action을 실행하고 그 결과를 반환
+# tick은 action을 실행하고 그 결과를 반환
 # success 또는 failure 또는 다른 action을 담은 ActionResult를 반환
-func perform() -> ActionResult:
+func perform(actor, blackboard) -> ActionResult:
+	host = actor
 	host.consumeAP(action_speed)
 	return ActionResult.success()
 

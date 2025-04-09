@@ -10,4 +10,4 @@ func _ready() -> void:
     pclight = Point_Light.new()
     add_child(pclight)
     pclight.light_image_init(3)
-    type = Basic_stat.Type.PLAYER
+    stats.type = Basic_stat.Type.PLAYER

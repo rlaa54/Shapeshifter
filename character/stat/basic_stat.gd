@@ -7,11 +7,14 @@ class_name Basic_stat
 @export var max_action_point : int = 100 
 @export var visible_range : Tile_map_layer.Circle = Tile_map_layer.Circle.NORMAL
 
+var type : Basic_stat.Type = Basic_stat.Type.ENEMY
+
 var cur_health : int
 var cur_action_point : int = 0
 var host : Character_base
 var sight : PackedVector2Array
 var local_visible_range : float
+var character_speed : Action.Speed = Action.Speed.NORMAL
 
 enum Type { PLAYER, ENEMY, NPC }
 

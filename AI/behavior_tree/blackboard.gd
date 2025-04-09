@@ -1,5 +1,7 @@
 extends RefCounted
 
+class_name Blackboard
+
 # 전역(또는 특정 AI 엘리먼트 공유)으로 사용될 수 있는 key-value 형태의 저장소.
 # set_value(key, value, blackboard_name)은 특정 “blackboard_name” 공간에 key/value를 저장.
 # get_value, has, erase 같은 메서드를 통해 상태를 공유·조회·삭제.

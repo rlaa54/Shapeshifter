@@ -37,7 +37,7 @@ func executeAction() -> void:
 		# 플레이어의 액션이 끝남
 		# TODO:다음 액션으로 넘어가기 위해 몬스터들의 actionpoint를 회복시켜야 함
 		if action.host == pc:
-			player_action_end()
+			player_turn_end()
 		
 		# TODO:몬스터 AI가 행동을 결정해야 함
 
@@ -48,7 +48,19 @@ func executeAction() -> void:
 	
 
 # 플레이어의 액션이 끝남
-func player_action_end() -> void:
+func player_turn_end() -> void:
+	pass
+
+# 플레이어의 턴이 시작됨
+func player_turn_start() -> void:
+	pass
+
+# 컴퓨터의 턴이 시작됨
+func computer_turn_start() -> void:
+	pass
+
+# 컴퓨터의 턴이 끝남
+func computer_turn_end() -> void:
 	pass
 
 # 액션큐에 액션을 추가함

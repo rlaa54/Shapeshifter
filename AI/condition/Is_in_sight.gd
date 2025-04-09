@@ -1,7 +1,7 @@
 extends ConditionLeaf
 
 # 타겟이 시야 안에 있니?
-func tick(actor, blackboard):
+func perform(actor, blackboard):
     # actor는 플레이어 캐릭터
     # blackboard는 게임 상태를 저장하는 객체
     # actor와 blackboard는 Behavior_tree의 자식 노드에서 전달받습니다.
