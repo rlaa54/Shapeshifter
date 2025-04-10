@@ -5,11 +5,11 @@ class_name Character_base
 @export var stats : Basic_stat
 
 var nextAction : Action = null
-
+var ai : StateMachine = null
 
 func _ready():
 	stats.ready(self)
-
+	ai = $Ai_component
 	# 생성되면 GameManager에 등록
 	# GameManager.active_characters.append(self)
 

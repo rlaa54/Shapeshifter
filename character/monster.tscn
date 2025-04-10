@@ -1,13 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://n6skajtdcdbl"]
+[gd_scene load_steps=7 format=3 uid="uid://n6skajtdcdbl"]
 
 [ext_resource type="PackedScene" uid="uid://cgl3vgm2nvo5t" path="res://character/character_base.tscn" id="1_t47h7"]
 [ext_resource type="Script" uid="uid://cy8psqd8sulit" path="res://character/monster.gd" id="2_mm5a4"]
 [ext_resource type="Script" uid="uid://cw8r26y8uu1em" path="res://AI/behavior_tree/nodes/bt_root.gd" id="3_erg4w"]
 [ext_resource type="Resource" uid="uid://clicnuiuwooq1" path="res://character/stat/basic_monster_stat.tres" id="3_mkfwj"]
 [ext_resource type="Script" uid="uid://d36d043od6gey" path="res://AI/behavior_tree/nodes/composites/sequence.gd" id="5_l5efm"]
-[ext_resource type="Script" uid="uid://ye0t53mpsfk5" path="res://character/action/set_closest_target.gd" id="6_l2s11"]
-[ext_resource type="Script" uid="uid://dg416lq7f5e36" path="res://AI/condition/Is_in_sight.gd" id="6_vf6uh"]
-[ext_resource type="Script" uid="uid://d11gkxo37sve" path="res://character/action/action.gd" id="7_l2s11"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_l5efm"]
 
@@ -26,15 +23,3 @@ metadata/_custom_type_script = "uid://cw8r26y8uu1em"
 [node name="first_encount" type="Node" parent="Ai_component/Idle" index="0"]
 script = ExtResource("5_l5efm")
 metadata/_custom_type_script = "uid://d36d043od6gey"
-
-[node name="set_closest_target" type="Node" parent="Ai_component/Idle/first_encount" index="0"]
-script = ExtResource("6_l2s11")
-metadata/_custom_type_script = "uid://d11gkxo37sve"
-
-[node name="target_is_in_sight" type="Node" parent="Ai_component/Idle/first_encount" index="1"]
-script = ExtResource("6_vf6uh")
-metadata/_custom_type_script = "uid://frdtyykx4net"
-
-[node name="close_to_attack_range" type="Node" parent="Ai_component/Idle/first_encount" index="2"]
-script = ExtResource("7_l2s11")
-metadata/_custom_type_script = "uid://d11gkxo37sve"

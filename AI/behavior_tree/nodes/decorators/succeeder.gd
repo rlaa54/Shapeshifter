@@ -4,11 +4,11 @@ extends Decorator
 
 class_name AlwaysSucceedDecorator
 
-# perform 결과를 반전시키거나(failer, inverter, succeder)
+# tick 결과를 반전시키거나(failer, inverter, succeder)
 
-func perform(action, blackboard):
+func tick(actor, blackboard):
     for c in get_children():
-        var response = c.perform(action, blackboard)
+        var response = c.tick(actor, blackboard)
         if response == RUNNING:
             return RUNNING
         return SUCCESS

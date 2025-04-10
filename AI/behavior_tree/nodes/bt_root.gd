@@ -4,10 +4,12 @@ extends Behavior_tree
 
 class_name Bt_root
 
-# Bt_root는 최상위 노드로, 하위 노드 1개만 두고, 
-# 결정하고 행동할 때 마다 자식의 perform()을 호출합니다. 
+# Bt_root의 자식은 행동트리이고 본인은 상태임.
+# 결정하고 행동할 때 마다 자식의 tick()을 호출합니다. 
+# 오직 하나의 자식만 가져야 함.
 
 @export var enabled : bool = true
+var host : Character_base
 
 # @onready var actor = $"../.."
 
@@ -15,11 +17,17 @@ class_name Bt_root
 
 # func set_blackboard(_blackboard : Blackboard) -> void:
 #     blackboard = _blackboard
-
 func _ready():
-    # if self.get_child_count() != 1:
-    #     print("Behavior Tree error: Root should have one child")
+    if self.get_child_count() != 1:
+        print("Behavior Tree error: Root should have one child")
         disable()
+
+func tick(actor, blackboard):
+    host = actor
+    # 오직 하나의 첫번째 자식만 호출함
+    if get_child(0).tick(actor, blackboard) == SUCCESS:
+        pass
+
 
 func enable():
     self.enabled = true

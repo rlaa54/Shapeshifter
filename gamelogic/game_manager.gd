@@ -51,21 +51,10 @@ func executeAction() -> void:
 func player_turn_end() -> void:
 	pass
 
-# 플레이어의 턴이 시작됨
-func player_turn_start() -> void:
-	pass
-
-# 컴퓨터의 턴이 시작됨
-func computer_turn_start() -> void:
-	pass
-
 # 컴퓨터의 턴이 끝남
 func computer_turn_end() -> void:
 	pass
 
 # 액션큐에 액션을 추가함
 func addAction(action: Action) -> void:
-	# 액션을 추가할 수 있는지 확인
-	# 현재는 액션의 주인으로 판정하지만
-	if action.host.canAddAction():
-		action_queue.append(action)
+	action_queue.append(action)

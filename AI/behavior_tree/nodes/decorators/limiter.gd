@@ -10,7 +10,7 @@ class_name LimiterDecorator
 
 @export var max_count : float = 0
 
-func perform(actor, blackboard):
+func tick(actor, blackboard):
     var current_count = blackboard.get_value(cache_key)
 
     if current_count == null:
@@ -18,7 +18,7 @@ func perform(actor, blackboard):
 
     if current_count <= max_count:
         blackboard.set_value(cache_key, current_count + 1)
-        return self.get_child(0).perform(actor, blackboard)
+        return self.get_child(0).tick(actor, blackboard)
 
     else:
-        return FAILED
+        return FAILURE

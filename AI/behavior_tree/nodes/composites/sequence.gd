@@ -6,9 +6,9 @@ class_name SequenceComposite
 
 # sequence(모든 자식이 순차 SUCCESS를 만족해야 SUCCESS)
 
-func perform(actor, blackboard):
+func tick(actor, blackboard):
     for c in get_children():
-        var response = c.perform(actor, blackboard)
+        var response = c.tick(actor, blackboard)
 
         if response != SUCCESS:
             return response
