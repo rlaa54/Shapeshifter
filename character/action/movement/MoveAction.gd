@@ -11,10 +11,10 @@ var localpos : Vector2
 # 이 액션의 호스트가 가고자 하는 방향
 var dir : Vector2i
 
-func _init(pos : Vector2i, char : Character_base) -> void:
-	super._init(char)
+func _init(pos : Vector2i, pchar : Character_base) -> void:
+	super._init(pchar)
 	dir = pos
-	character = char
+	character = pchar
 
 func perform() -> ActionResult:
 	# 캐릭터의 현재 위치를 가져옴
