@@ -11,22 +11,23 @@ func _ready():
 	stats.ready(self)
 	ai = $Ai_component
 	# 생성되면 GameManager에 등록
-	# GameManager.active_characters.append(self)
+	GameManager.active_characters.append(self)
 
 # 가장 가까운 적을 찾아 반환
 func get_closest_enemy() -> Character_base:
 	var closest_enemy = null
 	var closest_distance = INF
 
+	# 게임매니저에 등록된 캐릭터들 중에서 찾음
 	for c in GameManager.active_characters:
-		# 자신은 제외
-		if c == self:
-			continue
-		
 		# 다른 타입의 캐릭터만 검사함
 		# 예를 들어 플레이어면 몬스터만
 		# 몬스터면 플레이어만			
 		if c.stats.type == stats.type:
+			continue
+
+		# 자신은 제외
+		if c == self:
 			continue
 
 		var distance = position.distance_to(c.position)

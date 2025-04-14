@@ -3,7 +3,6 @@ extends Node
 class_name StateMachine
 
 # 여기서 blackboard(게임 상태 저장 객체)를 업데이트함, 
-
 const BlackBoard = preload("../behavior_tree/blackboard.gd")
 @onready var blackboard = BlackBoard.new()
 
@@ -42,24 +41,29 @@ func _ready() -> void:
 func decision_and_behavior(turncount : float) -> void:
     # blackboard에 현재 턴을 저장함
     blackboard.set_value("turncount", turncount)
-    # 자식들을 순회하며 tick()을 호출함
-    # 자식들은 상태이자 행동트리임
-    for children in get_children():
-        children.tick(host, blackboard)
+    # 현재 상태의 tick()을 호출함
+    current_state.tick(host, blackboard)
 
+# 상태를 변경하고자 할 때 호출해야 함
 func on_child_transition(state, new_state_name):
+    # 현재 상태가 아니라면 리턴함
+    # 즉 현재 상태를 알고 있어야 함
     if state != current_state:
         return
 
     var new_state = states.get(new_state_name.to_lower()) 
+    # 없는 상태라면 리턴함
     if !new_state:
         return
-    
+    # 현재 상태가 있다면 나감
     if current_state:
         current_state.Exit()
-
+    # 새로운 상태로 변경함
     new_state.Enter()
+    current_state = new_state
 
+# 액션을 판단하고 게임매니저에 올림
 func action_behave(action : Action) -> void:
+    # 현재 액션 포인트가 100이상인지 검사함
     if host.canAddAction():
         GameManager.addAction(action)

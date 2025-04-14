@@ -18,12 +18,13 @@ var host : Character_base
 # func set_blackboard(_blackboard : Blackboard) -> void:
 #     blackboard = _blackboard
 func _ready():
+    # 루트의 부모는 state_machine임
+    host = get_parent().host
     if self.get_child_count() != 1:
         print("Behavior Tree error: Root should have one child")
         disable()
 
 func tick(actor, blackboard):
-    host = actor
     # 오직 하나의 첫번째 자식만 호출함
     if get_child(0).tick(actor, blackboard) == SUCCESS:
         pass
