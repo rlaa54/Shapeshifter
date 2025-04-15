@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://cw8r26y8uu1em" path="res://AI/behavior_tree/nodes/bt_root.gd" id="3_erg4w"]
 [ext_resource type="Resource" uid="uid://clicnuiuwooq1" path="res://character/stat/basic_monster_stat.tres" id="3_mkfwj"]
 [ext_resource type="Script" uid="uid://d36d043od6gey" path="res://AI/behavior_tree/nodes/composites/sequence.gd" id="5_l5efm"]
-[ext_resource type="Script" uid="uid://cto3vwiwrtoj3" path="res://AI/behave/find_enemy_around.gd" id="6_jnh7d"]
+[ext_resource type="Script" uid="uid://cto3vwiwrtoj3" path="res://AI/behave/find_closest_enemy.gd" id="6_jnh7d"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_l5efm"]
 
@@ -25,6 +25,6 @@ metadata/_custom_type_script = "uid://cw8r26y8uu1em"
 script = ExtResource("5_l5efm")
 metadata/_custom_type_script = "uid://d36d043od6gey"
 
-[node name="find_enemy_around" type="Node" parent="Ai_component/Idle/idleprocess" index="0"]
+[node name="find_closest_enemy" type="Node" parent="Ai_component/Idle/idleprocess" index="0"]
 script = ExtResource("6_jnh7d")
 metadata/_custom_type_script = "uid://co452jx4k3xs1"

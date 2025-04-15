@@ -1,6 +1,6 @@
 extends BehaveLeaf
 
-class_name FindEnemyAround
+class_name FindClosestEnemy
 
 func tick(actor, blackboard):
     # 가장 가까운 적을 찾음

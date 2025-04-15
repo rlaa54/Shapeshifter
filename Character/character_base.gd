@@ -11,7 +11,15 @@ func _ready():
 	stats.ready(self)
 	ai = $Ai_component
 	# 생성되면 GameManager에 등록
+	active_character()
+
+# 활성화 된 캐릭터에 자신을 등록함
+func active_character() -> void:
 	GameManager.active_characters.append(self)
+
+# 활성화 된 캐릭터에서 자신을 제거함
+func inactive_character() -> void:
+	GameManager.active_characters.erase(self)
 
 # 가장 가까운 적을 찾아 반환
 func get_closest_enemy() -> Character_base:
