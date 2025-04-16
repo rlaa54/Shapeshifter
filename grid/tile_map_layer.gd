@@ -165,6 +165,7 @@ func outline_circle(center : Vector2, radius : float) -> PackedVector2Array:
 	return local_tiles
 
 # localpos에는 로컬 좌표를 넣어야 함
+# circletile을 넣으면 로컬좌표로 이동시킨 후 circletile을 반환함
 func circle_tile_move(localpos: Vector2, dcircle_tiles : PackedVector2Array) -> PackedVector2Array:
 	# cell_size.x/2, cell_size.y/2를 빼는 이유는
 	# 타일만큼만 움직여야 되는데
@@ -177,6 +178,7 @@ func circle_tile_move(localpos: Vector2, dcircle_tiles : PackedVector2Array) -> 
 	
 	return dcircle_tiles
 
+# circle을 넣으면 circle타일을 반환함
 func get_circletiles(circle : Circle) -> PackedVector2Array:
 	match circle:
 		Circle.VERYSMALL:

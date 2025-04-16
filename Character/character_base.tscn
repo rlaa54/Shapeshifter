@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://cgl3vgm2nvo5t"]
+[gd_scene load_steps=6 format=3 uid="uid://cgl3vgm2nvo5t"]
 
 [ext_resource type="Script" uid="uid://d0we1rexfi4wl" path="res://character/character_base.gd" id="1_0x1w6"]
 [ext_resource type="Resource" uid="uid://vtv8q07ni5ro" path="res://character/stat/basic_stat_test.tres" id="2_8mxn3"]
 [ext_resource type="Texture2D" uid="uid://du0fhh303migl" path="res://Asset/Art/icons/icon.svg" id="2_10cb7"]
 [ext_resource type="Script" uid="uid://duseftc4441ur" path="res://AI/Finite_State_Machine/StateMachine.gd" id="4_2n6yh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2n6yh"]
+size = Vector2(128, 128)
 
 [node name="Character_base" type="CharacterBody2D"]
 script = ExtResource("1_0x1w6")
@@ -13,6 +16,7 @@ stats = ExtResource("2_8mxn3")
 texture = ExtResource("2_10cb7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2n6yh")
 
 [node name="Ai_component" type="Node" parent="."]
 script = ExtResource("4_2n6yh")

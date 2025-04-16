@@ -2,7 +2,7 @@ extends Node2D
 
 var action_queue : Array[Action] = [] # 실행할 액션을 저장하는 큐 혹시 몰라서 일단 만들어봄
 var idx  = 0 # 현재 턴의 캐릭터
-var active_characters = Array[Character_base] # 활성화된 모든 캐릭터
+var active_characters : Array[Character_base] = [] # 활성화된 모든 캐릭터
 var turn_count : float = 0.0 # 게임 시작 시 1.0로 초기화해야 함
 @onready var world : World = get_node("/root/World") # 월드 노드
 @onready var pc : Player_character = get_node("/root/World/Player_character")# 플레이어 캐릭터
