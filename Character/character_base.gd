@@ -2,7 +2,10 @@ extends CharacterBody2D
 
 class_name Character_base
 
-@onready var collisionshape : CollisionShape2D = $CollisionShape2D
+@onready var hurtbox : Area2D = $hurtbox
+@onready var sight : Area2D = $sight
+@onready var sprite : Sprite2D = $Sprite2D
+
 @export var stats : Basic_stat
 
 var nextAction : Action = null
@@ -13,15 +16,7 @@ func _ready():
 	ai = $Ai_component
 	# 생성되면 GameManager에 등록
 	active_character()
-	collision_init()
-
-# 콜리전을 초기화함
-func collision_init() -> void:
-	# 콜리전의 크기를 타일 크기만큼 설정함
-	collisionshape.shape.size = Vector2(GameManager.tml.cell_size.x, GameManager.tml.cell_size.y)
-	# 콜리전의 위치는 정중앙에 오도록
-	collisionshape.position = Vector2(0, 0)
-
+	
 # 활성화 된 캐릭터에 자신을 등록함
 func active_character() -> void:
 	GameManager.active_characters.append(self)

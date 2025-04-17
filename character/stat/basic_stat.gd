@@ -4,7 +4,7 @@ class_name Basic_stat
 
 @export var max_health : int
 @export var max_action_point : int = 100        # 플레이어의 경우 언제든지 행동할 수 있어 0으로 설정해야 함
-@export var visible_range : Tile_map_layer.Circle = Tile_map_layer.Circle.NORMAL
+@export var visible_range : Tile_map_layer.Circle = Tile_map_layer.Circle.SMALL
 @export var type : Basic_stat.Type = Basic_stat.Type.ENEMY
 @export var character_speed : Action.Speed = Action.Speed.NORMAL
 
@@ -17,8 +17,6 @@ var local_visible_range : float
 enum Type { PLAYER, ENEMY, NPC }
 
 func ready(phost: Character_base) -> void:
-    print("hello my name is:", self)
-    print("hello ready for:", phost.name)
     host = phost
     local_visible_range = GameManager.tml.cell_size.x * (visible_range + 0.5)
     sight_init()

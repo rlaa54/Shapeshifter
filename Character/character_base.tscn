@@ -1,12 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://cgl3vgm2nvo5t"]
+[gd_scene load_steps=9 format=3 uid="uid://cgl3vgm2nvo5t"]
 
 [ext_resource type="Script" uid="uid://d0we1rexfi4wl" path="res://character/character_base.gd" id="1_0x1w6"]
 [ext_resource type="Resource" uid="uid://vtv8q07ni5ro" path="res://character/stat/basic_stat_test.tres" id="2_8mxn3"]
 [ext_resource type="Texture2D" uid="uid://du0fhh303migl" path="res://Asset/Art/icons/icon.svg" id="2_10cb7"]
+[ext_resource type="Script" uid="uid://bv723csyr08mt" path="res://character/collision/hurtbox.gd" id="4_1fad6"]
 [ext_resource type="Script" uid="uid://duseftc4441ur" path="res://AI/Finite_State_Machine/StateMachine.gd" id="4_2n6yh"]
+[ext_resource type="Script" uid="uid://di3jthwsdb4b8" path="res://character/collision/sight.gd" id="5_4d3mc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2n6yh"]
 size = Vector2(128, 128)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2n6yh"]
+radius = 128.0
 
 [node name="Character_base" type="CharacterBody2D"]
 script = ExtResource("1_0x1w6")
@@ -15,9 +20,23 @@ stats = ExtResource("2_8mxn3")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_10cb7")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="hurtbox" type="Area2D" parent="." groups=["hurtbox"]]
+script = ExtResource("4_1fad6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
 shape = SubResource("RectangleShape2D_2n6yh")
+
+[node name="sight" type="Area2D" parent="." groups=["sight"]]
+collision_layer = 2
+monitorable = false
+script = ExtResource("5_4d3mc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sight"]
+shape = SubResource("CircleShape2D_2n6yh")
+debug_color = Color(0.67422, 0.506805, 0.0179299, 0.42)
 
 [node name="Ai_component" type="Node" parent="."]
 script = ExtResource("4_2n6yh")
 metadata/_custom_type_script = "uid://duseftc4441ur"
+
+[connection signal="area_entered" from="sight" to="sight" method="_on_area_entered"]
