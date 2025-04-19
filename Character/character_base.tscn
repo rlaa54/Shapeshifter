@@ -40,3 +40,4 @@ script = ExtResource("4_2n6yh")
 metadata/_custom_type_script = "uid://duseftc4441ur"
 
 [connection signal="area_entered" from="sight" to="sight" method="_on_area_entered"]
+[connection signal="area_exited" from="sight" to="sight" method="_on_area_exited"]
